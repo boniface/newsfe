@@ -5,13 +5,15 @@ import { AppModule } from './app.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 
 @NgModule({
   imports: [
     AppModule,
     BrowserModule.withServerTransition({ appId: 'angular-starter' }),
     BrowserTransferStateModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    environment.production ? [] : AkitaNgDevtools.forRoot()
   ],
   bootstrap: [AppComponent],
 })

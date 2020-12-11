@@ -183,6 +183,7 @@
   },
   "defaultProject": "angular-starter",
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "defaultCollection": "@datorama/akita"
   }
 }

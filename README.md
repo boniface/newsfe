@@ -1,13 +1,48 @@
-# Angular 11 Example SEO
+### KEY COMMANDS 
 
-> An Angular starter kit featuring [Angular 11.0.2](https://angular.io), [Angular CLI 11.0.2](https://cli.angular.io/)
+GENERAL COMMANDS
 
-> it's part of a repo series designed to create a Progressive Web App with Angular
+`ng g i  [FOLDER]/file  -d`
 
-# Web Application Live Demo
-<a href="https://angular.ganatan.com/">
-  <img src="https://media.giphy.com/media/RfqiR12yhtHpwaItBq/giphy.gif" alt="Angular 11 Example Application"/>
-</a>
+`ng g c  [FOLDER]/file   -d`
+
+`ng g s  [FOLDER]/file  -d`
+
+`ng g m [MODULE NAME OR PACKAGE NAME]  --routing`
+
+1) START HERE ..BE IN THE WORKING DIRECTORY
+=================================
+cd [FOLDER WHERE PROJECT IS]
+
+cd ~/webprojects/hashusersweb
+
+CREATING A MODULE OR PACKAGE
+=============================
+
+ng g m security  --routing -d
+ng g m books --routing -d
+
+===============THE REST ======================================
+*** START FROM HERE ******
+
+1) CREATE: SERVICE  EXAMPLE
+===================================
+ng g s roles/services/roles --spec=false -d
+ng
+2) INTERFACE EXAMPLE:
+======================
+ ng g i article/state/models/views model -d 
+
+3)  COMPONENT EXAMPLE
+===========================
+  ng g c roles/components/role --m=/roles/roles.module.ts --spec=false -d
+
+
+
+  ============CREATING GUARDS=======
+
+
+  ===== THE TODO LISTS ====
 
 ## Quick start
 
