@@ -5,4 +5,5 @@ export interface Website {
   name: string;
   description: string;
   logo: string;
+  id?: string;
 }
