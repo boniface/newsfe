@@ -1,11 +1,16 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-import { HomeComponent } from './modules/general/home/home.component';
-import { NotFoundComponent } from './modules/general/not-found/not-found.component';
+import {HomeComponent} from './modules/general/home/home.component';
+import {NotFoundComponent} from './modules/general/not-found/not-found.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, },
+  {path: '', component: HomeComponent,},
+  {
+    path: 'articles',
+    loadChildren: () => import('./articles/article.module')
+      .then(mod => mod.ArticleModule)
+  },
   {
     path: 'httpclient',
     loadChildren: () => import('./modules/application/items/items.module')
@@ -51,7 +56,7 @@ const routes: Routes = [
     loadChildren: () => import('./modules/general/signin/signin.module')
       .then(mod => mod.SigninModule)
   },
-  { path: '**', component: NotFoundComponent }
+  {path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({
@@ -61,4 +66,5 @@ const routes: Routes = [
   exports: [RouterModule],
   declarations: []
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

@@ -12,34 +12,48 @@ GENERAL COMMANDS
 
 1) START HERE ..BE IN THE WORKING DIRECTORY
 =================================
+```bash
 cd [FOLDER WHERE PROJECT IS]
+```
 
+```bash 
 cd ~/webprojects/hashusersweb
+```
 
 CREATING A MODULE OR PACKAGE
 =============================
 
+```bash
 ng g m security  --routing -d
+```
+```bash
 ng g m books --routing -d
+```
 
 ===============THE REST ======================================
 *** START FROM HERE ******
 
 1) CREATE: SERVICE  EXAMPLE
 ===================================
-ng g s roles/services/roles --spec=false -d
-ng
+```bash
+ng g s users/state/services/change-password --skip-tests=true -d
+```
+
 2) INTERFACE EXAMPLE:
 ======================
+ ```bash
  ng g i article/state/models/views model -d 
+ ```
 
 3)  COMPONENT EXAMPLE
 ===========================
-  ng g c roles/components/role --m=/roles/roles.module.ts --spec=false -d
+    
+```bash 
+ng g c articles/pages/containers/articles --flat=true --skip-tests=true -d 
+```
 
 
-
-  ============CREATING GUARDS=======
+  ===CREATING GUARDS=======
 
 
   ===== THE TODO LISTS ====
