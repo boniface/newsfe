@@ -45,11 +45,18 @@ ng g s users/state/services/change-password --skip-tests=true -d
  ng g i article/state/models/views model -d 
  ```
 
-3)  COMPONENT EXAMPLE
+3)  CONTAINER EXAMPLE
 ===========================
     
 ```bash 
 ng g c articles/pages/containers/articles --flat=true --skip-tests=true -d 
+```
+
+ COMPONENT EXAMPLE
+ ===========================
+
+```bash 
+ng g c websites/pages/components/website  --skip-tests=true -d 
 ```
 
 

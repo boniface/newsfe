@@ -19,18 +19,30 @@ export class WebsiteQueries extends QueryEntity<WebsiteState, Website> {
 
   public getWebsite(zone: string, siteCode: string): Observable<Website> {
     const id = zone + ',' + siteCode;
+    if (this.hasEntity(id) === false) {
+      this.service.getEntities();
+      return this.selectEntity(id);
+    }
     return this.selectEntity(id);
   }
 
   public getWebsites(): Observable<Website[]> {
-    return this.selectAll();
+    if (this.hasEntity() === false) {
+      return  this.service.getEntities();
+    }
+    return this.service.getEntities();
   }
 
   public getZoneSites(zone: string): Observable<Website[]> {
+    if (this.hasEntity(zone) === false) {
+      this.service.getEntities();
+      return this.selectAll({
+        filterBy: entity => entity.zone === zone
+      });
+    }
     return this.selectAll({
       filterBy: entity => entity.zone === zone
     });
   }
-
 
 }

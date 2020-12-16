@@ -11,6 +11,12 @@ const routes: Routes = [
     loadChildren: () => import('./articles/article.module')
       .then(mod => mod.ArticleModule)
   },
+
+  {
+    path: 'websites',
+    loadChildren: () => import('./websites/websites.module')
+      .then(mod => mod.WebsitesModule)
+  },
   {
     path: 'httpclient',
     loadChildren: () => import('./modules/application/items/items.module')
