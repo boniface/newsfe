@@ -134,3 +134,43 @@ English Tutorials
 Tutoriels en français
 - Installation - https://www.ganatan.com/tutorials/search-engine-optimization-avec-angular
 - Tutoriels Etape par étape - https://www.ganatan.com/tutorials
+
+```scala
+  override def routes: Routes = {
+    // Get Articles
+    case GET(p"/today/$zone") =>
+      articlesController.getTodayStories(zone)
+    case GET(p"/today/count/$zone") =>
+      articlesController.getNumberOfArticles(zone)
+    case GET(p"/week/$zone") =>
+      articlesController.getThisWeekStories(zone)
+    case GET(p"/lastweek/$zone") =>
+      articlesController.getLastWeekStories(zone)
+    case GET(p"/month/$zone") =>
+      articlesController.getMonthlyStories(zone)
+    //  Report Abuse
+    case POST(p"/abuse") =>
+      articlesController.reportAbuse
+    //Discussion
+    case POST(p"/comment/create") =>
+      articlesController.postComment
+    case GET(p"/comment/get/$id") =>
+      articlesController.getComments(id)
+    case POST(p"/response/create") =>
+      articlesController.postResponse
+    case GET(p"/response/get/$commentId") =>
+      articlesController.getResponses(commentId)
+    //Votes
+    case POST(p"/vote/down") =>
+      articlesController.castDownVoteForComment
+    case POST(p"/vote/up") =>
+      articlesController.castUpVoteForComment
+    case GET(p"/vote/get/$id") =>
+      articlesController.getCommentVotes(id)
+    //Count
+    case POST(p"/count/view") =>
+      articlesController.countView
+    case GET(p"/count/get/$id") =>
+      articlesController.getViews(id)
+
+```
