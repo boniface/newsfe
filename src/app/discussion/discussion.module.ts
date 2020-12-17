@@ -1,11 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { DiscussionRoutingModule } from './discussion-routing.module';
+import {DiscussionRoutingModule} from './discussion-routing.module';
+import {DiscussionComponent} from './pages/containers/discussion.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [DiscussionComponent],
   imports: [
     CommonModule,
     DiscussionRoutingModule
