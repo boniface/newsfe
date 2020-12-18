@@ -1,6 +1,18 @@
-body {
-  color: black;
-  font-weight: 400;
+/*body {*/
+/*  color: black;*/
+/*  font-weight: 400;*/
+/*}*/
+/*html, body { height: 100%; }*/
+/*body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/
+/* Add application styles & imports to this file! */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.example-full-width {
+  width: 100%;
+}
