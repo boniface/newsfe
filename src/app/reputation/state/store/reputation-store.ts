@@ -1,8 +1,9 @@
 import {EntityState, EntityStore, StoreConfig} from '@datorama/akita';
 import {User} from '../../../users/state/models/user.model';
 import {Injectable} from '@angular/core';
+import {Reputation} from '../models/reputation.model';
 
-export interface UserState extends EntityState<User, string> {
+export interface ReputationState extends EntityState<Reputation, string> {
 }
 
 @Injectable({
@@ -17,7 +18,7 @@ export interface UserState extends EntityState<User, string> {
 })
 
 
-export class UserStore extends EntityStore<UserState, User> {
+export class ReputationStore extends EntityStore<ReputationState, User> {
   constructor() {
     super();
   }
