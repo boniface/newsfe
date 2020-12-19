@@ -1,18 +1,48 @@
-/*body {*/
-/*  color: black;*/
-/*  font-weight: 400;*/
-/*}*/
-/*html, body { height: 100%; }*/
-/*body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/
-/* Add application styles & imports to this file! */
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
+body {
+  padding: 2em 23em;
+  background:lightgray;
 }
 
-.example-full-width {
-  width: 100%;
+/*----------------Update------------------*/
+
+
+
+/*Media Queries for fixing distortion at some points*/
+
+@media screen and (max-width: 1150px){
+  body{
+    padding: 2em 11.5em !important;
+  }
+
+}
+
+/*Media Queries For Tablates*/
+
+@media screen and (max-width: 1024px){
+  body{
+    padding: 0em 0em !important;
+  }
+}
+
+@media screen and (max-width: 960px){
+  body{
+    padding: 0em 0em !important;
+  }
+}
+
+@media screen and (max-width:768px){
+  body{
+    padding: 0em 0em !important;
+  }
+}
+
+/*Media Queries For Mobiles*/
+@media screen and (max-width:480px) {
+
+
+  body {
+    padding: 0em 0em !important;
+  }
 }
