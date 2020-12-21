@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
     BrowserModule.withServerTransition({ appId: 'angular-starter' }),
     BrowserTransferStateModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    environment.production ? [] : AkitaNgDevtools.forRoot()
+    environment.production ? [] : AkitaNgDevtools.forRoot(),
+    BrowserAnimationsModule
   ],
   bootstrap: [AppComponent],
 })
