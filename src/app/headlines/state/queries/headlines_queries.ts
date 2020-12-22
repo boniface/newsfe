@@ -5,6 +5,7 @@ import {User} from '../../../users/state/models/user.model';
 import {UserService} from '../../../users/state/services/user.service';
 import {HeadlinesService} from '../services/headlines.service';
 import {Headlines} from '../models/headlines';
+import {HeadlinesState, HeadlinesStore} from '../store/headline-store';
 
 @Injectable({
   providedIn: 'root'
