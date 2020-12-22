@@ -4,7 +4,6 @@ import {Reputation} from '../models/reputation.model';
 import {ReputationService} from '../services/reputation.service';
 import {ReputationState, ReputationStore} from '../store/reputation-store';
 import {Observable} from 'rxjs';
-import {Website} from '../../../websites/state/models/website.model';
 
 // @ts-ignore
 // @ts-ignore
@@ -22,7 +21,7 @@ export class ReputationQueries extends QueryEntity<ReputationState, Reputation> 
   public ReputationQueries(userId: string, year: string): Observable<Reputation> {
     const id = userId + ',' + year;
     if (this.hasEntity(userId) === false) {
-      this.service.getEtities();
+      this.service.hasOwnProperty('');
       return this.selectEntity(id);
     }
     return this.selectEntity(id);
