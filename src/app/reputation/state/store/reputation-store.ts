@@ -18,7 +18,7 @@ export interface ReputationState extends EntityState<Reputation, string> {
 })
 
 
-export class ReputationStore extends EntityStore<ReputationState, User> {
+export class ReputationStore extends EntityStore<ReputationState, Reputation> {
   constructor() {
     super();
   }
