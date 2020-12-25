@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {ArticlesState, ArticlesStore} from '../store/articles-store';
 import {Article} from '../models/article.model';
 import {ArticleService} from '../services/article.service';
+import {AppDates} from '../../../shared/util/AppDates';
 
 @Injectable({
   providedIn: 'root'
@@ -26,63 +27,101 @@ export class ArticlesQueries extends QueryEntity<ArticlesState, Article> {
   }
 
   public getTodayArticles(zone: string): Observable<Article[]> {
-    const today: Date = new Date();
-    console.log('Date: ' + today.getDate());
+
     return this.selectAll({
       filterBy: entity =>
-        entity.site.zone === zone
+        entity.site.zone === zone &&
+        entity.date === AppDates.today()
     });
   }
 
   public getYesterdayArticles(zone: string): Observable<Article[]> {
-    let yesterday = new Date();
-    1;
     return this.selectAll({
-      filterBy: entity => entity.site.zone === zone
-      entity.date.getDay() === yesterday.getDay()
+      filterBy: entity => entity.site.zone === zone &&
+        entity.date === AppDates.yesterday()
 
     });
   }
 
   public getThisWeekArticles(zone: string): Observable<Article[]> {
-    const month: Date = new Date();
-    console.log('Date: ' + month.get);
     return this.selectAll({
-      filterBy: entity => entity.site.zone === zone
-      // var week = new Array("Sunday", "Monday", "Tuesday", "Wednesday","Thursday","Friday","Saturday");
-      //  for (var i = 0; i < week.length; i++) {
-      //  console.log(week[i]);
-      //   }
+      filterBy: entity => entity.site.zone === zone &&
+      entity.date === AppDates.thisWeek()
+
     });
   }
 
   public getLastWeekArticles(zone: string): Observable<Article[]> {
     return this.selectAll({
-      filterBy: entity => entity.site.zone === zone
+      filterBy: entity => entity.site.zone === zone &&
+      entity.date === AppDates.lastWeek()
+
     });
   }
 
 
   public getThisMonthArticles(zone: string): Observable<Article[]> {
-    const month: Date = new Date();
-    console.log('Date: ' + month.getMonth());
     return this.selectAll({
-      filterBy: entity => entity.site.zone === zone
+      filterBy: entity =>
+        entity.site.zone === zone &&
+        entity.date === AppDates.thisMonth()
     });
   }
 
-  public getTodaySitesArticles(siteCode: string): Observable<Article[]> {
-    const today: Date = new Date();
-    console.log('Date: ' + today.getDate());
+  public getLastMonthArticles(zone: string): Observable<Article[]> {
     return this.selectAll({
-      filterBy: entity => entity.site.siteCode === siteCode
+      filterBy: entity =>
+        entity.site.zone === zone &&
+        entity.date === AppDates.lastMonth()
     });
   }
-  public getMonthSitesArticles(siteCode: string): Observable<Article[]> {
-    const month: Date = new Date();
-    console.log('Date: ' + month.getMonth());
+
+  // Sites //
+
+  public getTodaySitesArticles(siteCode: string): Observable<Article[]> {
     return this.selectAll({
-      filterBy: entity => entity.site.siteCode === siteCode
+      filterBy: entity =>
+        entity.site.zone === siteCode &&
+        entity.date === AppDates.today()
+    });
+  }
+
+  public getYesterdaySitesArticles(siteCode: string): Observable<Article[]> {
+    return this.selectAll({
+      filterBy: entity => entity.site.zone === siteCode &&
+        entity.date === AppDates.yesterday()
+    });
+  }
+  public getThisWeekSiteArticles(siteCode: string): Observable<Article[]> {
+    return this.selectAll({
+      filterBy: entity => entity.site.zone === siteCode &&
+      entity.date === AppDates.thisWeek()
+
+    });
+  }
+
+  public getLastWeekSiteArticles(siteCode: string): Observable<Article[]> {
+    return this.selectAll({
+      filterBy: entity => entity.site.zone === siteCode &&
+      entity.date === AppDates.lastWeek()
+
+    });
+  }
+
+
+  public getThisMonthSiteArticles(siteCode: string): Observable<Article[]> {
+    return this.selectAll({
+      filterBy: entity =>
+        entity.site.zone === siteCode &&
+        entity.date === AppDates.thisMonth()
+    });
+  }
+
+  public getLastMonthSiteArticles(siteCode: string): Observable<Article[]> {
+    return this.selectAll({
+      filterBy: entity =>
+        entity.site.zone === siteCode &&
+        entity.date === AppDates.lastMonth()
     });
   }
 
