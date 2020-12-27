@@ -5,6 +5,8 @@ import {ArticlesState, ArticlesStore} from '../store/articles-store';
 import {Article} from '../models/article.model';
 import {ArticleService} from '../services/article.service';
 import {AppDates} from '../../../shared/util/AppDates';
+import { isAfter } from 'date-fns';
+import { isBefore } from 'date-fns'
 
 @Injectable({
   providedIn: 'root'
@@ -31,22 +33,24 @@ export class ArticlesQueries extends QueryEntity<ArticlesState, Article> {
     return this.selectAll({
       filterBy: entity =>
         entity.site.zone === zone &&
-        entity.date === AppDates.today()
+        isAfter(entity.date, AppDates.today())
     });
   }
 
   public getYesterdayArticles(zone: string): Observable<Article[]> {
     return this.selectAll({
       filterBy: entity => entity.site.zone === zone &&
-        entity.date === AppDates.yesterday()
+        isBefore(entity.date, AppDates.today()) &&
+      isAfter(entity.date, AppDates.yesterday())
 
-    });
+
+  });
   }
 
   public getThisWeekArticles(zone: string): Observable<Article[]> {
     return this.selectAll({
       filterBy: entity => entity.site.zone === zone &&
-      entity.date === AppDates.thisWeek()
+        isAfter(entity.date, AppDates.thisWeek())
 
     });
   }
@@ -54,7 +58,8 @@ export class ArticlesQueries extends QueryEntity<ArticlesState, Article> {
   public getLastWeekArticles(zone: string): Observable<Article[]> {
     return this.selectAll({
       filterBy: entity => entity.site.zone === zone &&
-      entity.date === AppDates.lastWeek()
+        isBefore( entity.date , AppDates.thisWeek()) &&
+        isAfter(entity.date, AppDates.lastWeek())
 
     });
   }
@@ -64,7 +69,7 @@ export class ArticlesQueries extends QueryEntity<ArticlesState, Article> {
     return this.selectAll({
       filterBy: entity =>
         entity.site.zone === zone &&
-        entity.date === AppDates.thisMonth()
+        isAfter(entity.date, AppDates.thisMonth())
     });
   }
 
@@ -72,8 +77,11 @@ export class ArticlesQueries extends QueryEntity<ArticlesState, Article> {
     return this.selectAll({
       filterBy: entity =>
         entity.site.zone === zone &&
-        entity.date === AppDates.lastMonth()
-    });
+        isBefore(entity.date, AppDates.thisMonth()) &&
+      isAfter(entity.date, AppDates.lastMonth())
+
+
+  });
   }
 
   // Sites //
@@ -92,10 +100,11 @@ export class ArticlesQueries extends QueryEntity<ArticlesState, Article> {
         entity.date === AppDates.yesterday()
     });
   }
+
   public getThisWeekSiteArticles(siteCode: string): Observable<Article[]> {
     return this.selectAll({
       filterBy: entity => entity.site.zone === siteCode &&
-      entity.date === AppDates.thisWeek()
+        entity.date === AppDates.thisWeek()
 
     });
   }
@@ -103,7 +112,7 @@ export class ArticlesQueries extends QueryEntity<ArticlesState, Article> {
   public getLastWeekSiteArticles(siteCode: string): Observable<Article[]> {
     return this.selectAll({
       filterBy: entity => entity.site.zone === siteCode &&
-      entity.date === AppDates.lastWeek()
+        entity.date === AppDates.lastWeek()
 
     });
   }
