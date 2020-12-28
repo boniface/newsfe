@@ -5,9 +5,9 @@ import {HomeComponent} from './modules/general/home/home.component';
 import {NotFoundComponent} from './modules/general/not-found/not-found.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent,},
+  {path: 'home', component: HomeComponent,},
   {
-    path: 'articles',
+    path: '',
     loadChildren: () => import('./articles/article.module')
       .then(mod => mod.ArticleModule)
   },
