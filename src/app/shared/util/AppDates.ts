@@ -1,5 +1,5 @@
 import startOfWeek from 'date-fns/startOfWeek';
-import {endOfWeek} from 'date-fns';
+import {lastDayOfWeek} from 'date-fns';
 
 export class AppDates {
   public static today(): Date {
@@ -21,8 +21,8 @@ export class AppDates {
 
   public static lastWeek(): Date {
     const today = new Date();
-    const saturday = new Date(today.setDate(today.getDay()));
-    return saturday;
+    const lastWeek = lastDayOfWeek(new Date(2020, 10, 21));
+    return lastWeek;
 
   }
 
