@@ -32,8 +32,8 @@
             </a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link text-white" routerLink="/signin">
-              <i class="fas fa-user mr-1"></i>Sign in DDFS
+            <a class="nav-link text-white" routerLink="/sign in">
+              <i class="fas fa-user mr-1"></i>Sign in
             </a>
           </li>
           <li class="nav-item active">
@@ -46,16 +46,48 @@
     </div>
   </nav>
 </header>
+                               <h3>Welcome To Our Site</h3>
 
 <main class="">
   <div class="container">
-    <div class="card" style="width: 18rem;">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="card mb-3" style="max-width: 1000px;">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="https://via.placeholder.com/720x300" class="card-img" alt="this is working">
+
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Zambia Hash</h5>
+            <p class="card-text">this working</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
       </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-2">
+      <div class="col mb-4">
+        <div class="card">
+          <img src="https://via.placeholder.com/750x300" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">article 1</h5>
+            <p class="card-text">the best news ever.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-4">
+        <div class="card">
+          <img src="https://via.placeholder.com/250x100" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">article 2</h5>
+            <p class="card-text">testing the page if my CARD IS good .</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-primary" role="alert">
+      Hellow viewers !
     </div>
       <router-outlet></router-outlet>
   </div>
@@ -64,6 +96,14 @@
 <div class="footer" style="background-color:#1976d2">
   <div class="container">
     <div class="row">
+      <button type="button" class="btn btn-primary">Log In</button>
+      <button type="button" class="btn btn-primary">Sign Up</button>
+      <button type="button" class="btn btn-primary">Comments</button>
+      <button type="button" class="btn btn-primary">Help</button>
+      <button type="button" class="btn btn-primary">About Us</button>
+      <button type="button" class="btn btn-primary">Contacts</button>
+
+      <button type="button" class="btn btn-link">Link</button>
       <div class="col-12">
         <p class="text-center text-white">&copy; 2021 - ZambiaHash.com</p>
       </div>

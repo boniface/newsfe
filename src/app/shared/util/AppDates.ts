@@ -9,7 +9,7 @@ export class AppDates {
 
   public static yesterday(): Date {
     const today = new Date();
-    const yesterday = new Date(today.setDate(today.getDate() - 2));
+    const yesterday = new Date(today.setDate(today.getDate() - 1));
     return yesterday;
   }
 
@@ -21,8 +21,8 @@ export class AppDates {
 
   public static lastWeek(): Date {
     const today = new Date();
-    console.log(lastDayOfWeek(today[-6]));
-    return today;
+    const lastWeek = lastDayOfWeek(new Date(2020, 10, 21));
+    return lastWeek;
 
   }
 
@@ -33,8 +33,8 @@ export class AppDates {
   }
 
   public static lastMonth(): Date {
-    const lastMonth = new Date();
-    console.log(lastMonth.getMonth() - 2);
+    const today = new Date();
+    const lastMonth = new Date(today.setMonth(today.getMonth() - 1));
     return lastMonth;
   }
 }
