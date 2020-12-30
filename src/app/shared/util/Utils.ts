@@ -2,10 +2,17 @@ import {TokenDecoder} from './TokenDecoder';
 import {Md5} from 'ts-md5';
 import {HttpHeaders} from '@angular/common/http';
 import * as moment from 'moment';
-import {v4 as uuidv4} from 'uuid';
+
 
 export const BASE_URL = 'https://newsapi.africahash.com';
 export const ZONE = 'ZM';
+
+function uuidv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    let r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
 
 export const TOKENINFO = {
   EMAIL_ID: 'EMAIL_ID',
@@ -27,8 +34,9 @@ export class Util {
     }
   }
 
+
   static getId(): string {
-    return Md5.hashStr(uuidv4()).toString();
+      return Md5.hashStr(uuidv4()).toString();
   }
 
   static generateSiteCode(name: string): string {
