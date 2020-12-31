@@ -1,15 +1,32 @@
 <header>
-  <nav class="navbar navbar-expand-md navbar-light fixed-top bd-navbar" style="background-color: #0da8e1;">
+  <nav class="navbar navbar-expand-md navbar-light fixed-top bd-navbar  alert alert-primary" >
     <div class="container-fluid">
-      <a href="https://github.com/ganatan/angular10-app" class="d-none d-sm-block">
-        <img style="position: absolute; top: 0; right: 0; border: 0; z-index: 2000;"
-             src="https://api.ganatan.com/articles/img/forkme.png" alt="Get The App"
-             data-canonical-src="https://api.ganatan.com/articles/img/forkme.png" />
+<!--      <a href="https://github.com/ganatan/angular10-app" class="d-none d-sm-block">-->
+<!--        <img style="position: absolute; top: 0; right: 0; border: 0; z-index: 2000;"-->
+<!--             src="https://api.ganatan.com/articles/img/forkme.png" alt="Get The App"-->
+<!--             data-canonical-src="https://api.ganatan.com/articles/img/forkme.png" />-->
+<!--      </a>-->
+      <a class="navbar-brand " routerLink="/">
+        <img src="assets/icons/zmlogoheader.png" width="90" height="30" alt="" class="rounded-circle">
+        <span class="mr-1 text-primary text-capitalize fs-4 fw-bold"> Zambia Hash</span>
       </a>
-      <a class="navbar-brand" routerLink="/">
-        <span class="mr-1">Zambia Hash</span>
-        <img src="assets/params/images/logo/ganatan.png" width="20" height="20" alt="">
-      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             All Websites
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+              <li><a class="dropdown-item" href="#">Znasdm, sam,dn admnas dsad asn</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#bd-docs-nav"
               aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -17,29 +34,28 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mx-auto">
           <li class="nav-item active">
-            <a class="nav-link text-white" routerLink="/">
-              <i class="fas fa-home mr-1"></i>home
+            <a class="nav-link text-primary fw-bold" routerLink="/">
+              <i class="fas fa-home mr-1"></i> Home
             </a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link text-white" routerLink="/about">
-              <i class="far fa-question-circle mr-1"></i>About
+            <a class="nav-link text-primary fw-bold" routerLink="/websites">
+              <i class="fa fa-sitemap mr-1"></i> Websites
             </a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link text-white" routerLink="/contact">
-              <i class="fas fa-envelope mr-1"></i>Contact
+            <a class="nav-link text-primary fw-bold" routerLink="/aboutus">
+              <i class="fas fa-info-circle mr-1"></i> About Us
             </a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link text-white" routerLink="/sign in">
-              <i class="fas fa-user mr-1"></i>Sign in
+            <a class="nav-link text-primary fw-bold" routerLink="/contactus">
+              <i class="fas fa-envelope mr-1"></i> Contact Us
             </a>
           </li>
-
           <li class="nav-item active">
-            <a class="nav-link text-white" href="https://github.com/ganatan">
-              <i class="fab fa-github mr-1"></i>Github
+            <a class="nav-link text-primary fw-bold" routerLink="/privacy">
+              <i class="fas fa-ad  mr-1"></i> Privacy Policy
             </a>
           </li>
         </ul>
@@ -51,8 +67,9 @@
 
 <main class="">
   <div class="container">
-    <div class="alert alert-primary" role="alert">
-      <img src="https://via.placeholder.com/1000x90" class="img-fluid" alt="..." >
+    <p></p>
+    <div class="alert alert-primary text-center" >
+      <img src="https://via.placeholder.com/1000x200" class="img-fluid" alt="..." >
 
     </div>
           <router-outlet></router-outlet>
@@ -63,26 +80,6 @@
 
   <div class="container">
     <div class="row">
-      <button type="button" class="btn btn-primary">Log In</button>
-      <div class="input-group flex-nowrap">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="addon-wrapping">UserID</span>
-        </div>
-        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
-      </div>
-      <div class="input-group flex-nowrap">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="add-wrapping">Password</span>
-        </div>
-        <input type="text" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="addon-wrapping">
-      </div>
-      <button type="button" class="btn btn-primary">Sign Up</button>
-      <button type="button" class="btn btn-primary">Comments</button>
-      <button type="button" class="btn btn-primary">Help</button>
-      <button type="button" class="btn btn-primary">About Us</button>
-      <button type="button" class="btn btn-primary">Contacts</button>
-
-      <button type="button" class="btn btn-link">Link</button>
       <div class="col-12">
         <p class="text-center text-white">&copy; 2021 - ZambiaHash.com</p>
       </div>
