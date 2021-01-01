@@ -6,6 +6,7 @@ import {Article} from '../models/article.model';
 import {ArticleService} from '../services/article.service';
 import {AppDates} from '../../../shared/util/AppDates';
 import {isAfter, isBefore} from 'date-fns';
+import {ArticlesTodayStore} from '../store/articles-today-store';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ import {isAfter, isBefore} from 'date-fns';
 
 export class ArticlesQueries extends QueryEntity<ArticlesState, Article> {
   constructor(
-    protected store: ArticlesStore,
+    protected store: ArticlesTodayStore,
     private service: ArticleService
   ) {
     super(store);
@@ -33,13 +34,15 @@ export class ArticlesQueries extends QueryEntity<ArticlesState, Article> {
         .getTodayArticles(zone)
         .subscribe();
       return this.selectAll({
-        filterBy: entity =>
-          entity.site.zone === zone
+        filterBy: [
+          entity => entity.site.zone === zone
+        ]
       });
     }
   }
 
   public getYesterdayArticles(zone: string): Observable<Article[]> {
+
     return this.selectAll({
       filterBy: entity => entity.site.zone === zone &&
         isBefore(entity.date, AppDates.today()) &&
