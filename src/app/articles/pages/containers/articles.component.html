@@ -33,30 +33,27 @@
         <div class="tab-pane fade show active" id="pills-today" role="tabpanel" aria-labelledby="pills-today-tab">
 
 
-          <div class="card text">
+          <div class="card text" *ngFor="let article of todayArticles">
             <div class="card-header text-primary fw-bold fs-5 gx-3">
-              <img src="https://via.placeholder.com/30x30" class="rounded-circle" alt="..."> Lusaka Times
+              <img src="{{article.site.logo}}" width="30" height="30" class="rounded-circle" alt="..."> {{article.site.name}}
               <i class="fas fa-clock mr-1 text-danger"></i> 2 days ago
             </div>
             <div class="card-body">
-              <img src="https://via.placeholder.com/800x400" class="card-img-top" alt="...">
-              <h5 class="card-title fw-bold fs-2 text-primary">Special title treatment</h5>
+              <img src="{{article.image}}" height="500" width="800" class="card-img-top" alt="...">
+              <h5 class="card-title fw-bold fs-2 text-primary">{{article.title}}</h5>
               <p class="card-text fs-5 ">
-                Use the Bootstrap grid system and its .row-cols classes to control how
-                many grid columns (wrapped around your cards) you show per row.
-                For example, here’s .row-cols-1 laying out the cards on one column, and
-                .row-cols-md-2 splitting four cards to equal width across multiple rows, from
-                the medium breakpoint up.
+                {{article.content}}
               </p>
               <div class="text">
                 <a href="#" class="btn btn-outline-primary"> Read More </a>
               </div>
             </div>
             <div class="card-footer text-muted text-end fs-5 gx-3">
-              <i class="fas fa-eye mr-1 text-primary text-end ">17,000</i> Views
+              <i class="fas fa-eye mr-1 text-primary text-end "></i> Views
               <i class="fas fa-comments mr-1 text-primary text-end">100</i> Comments
             </div>
           </div>
+
         </div>
 
 

@@ -3,7 +3,6 @@ import {EntityState, EntityStore, StoreConfig} from '@datorama/akita';
 import {Article} from '../models/article.model';
 
 export interface ArticlesState extends EntityState<Article, string> {
-
 }
 
 @Injectable({

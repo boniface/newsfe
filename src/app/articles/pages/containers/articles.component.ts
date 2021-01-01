@@ -6,6 +6,7 @@ import {Meta, Title} from '@angular/platform-browser';
 import {Router} from '@angular/router';
 import {ArticlesQueries} from '../../state/queries/articles-queries';
 import {takeUntil} from 'rxjs/operators';
+import {ZONE} from '../../../shared/util/Utils';
 
 @Component({
   selector: 'app-articles',
@@ -36,12 +37,12 @@ export class ArticlesComponent extends BaseComponent implements OnInit {
     this.canonicalService.setCanonicalURL();
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag(
-      {name: 'description', content: 'The Single Source of all online news Headlines from Zambia'}
+      {name: 'Description', content: 'The Single Source of All Online News Headlines From Zambia'}
     );
-    this.articleQueries.getArticles()
+    this.articleQueries.getTodayArticles(ZONE)
       .pipe(takeUntil(this.destroyed))
-      .subscribe(aricles => {
-        this.todayArticles = aricles;
+      .subscribe(articles => {
+        this.todayArticles = articles;
       });
 
   }
