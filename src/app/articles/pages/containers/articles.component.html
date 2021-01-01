@@ -35,14 +35,15 @@
 
           <div class="card text" *ngFor="let article of todayArticles">
             <div class="card-header text-primary fw-bold fs-5 gx-3">
-              <img src="{{article.site.logo}}" width="30" height="30" class="rounded-circle" alt="..."> {{article.site.name}}
+              <img src="{{article.site.logo}}" width="30" height="30" class="rounded-circle"
+                   alt="..."> {{article.site.name}}
               <i class="fas fa-clock mr-1 text-danger"></i> 2 days ago
             </div>
             <div class="card-body">
               <img src="{{article.image}}" height="500" width="800" class="card-img-top" alt="...">
               <h5 class="card-title fw-bold fs-2 text-primary">{{article.title}}</h5>
               <p class="card-text fs-5 ">
-                {{article.content}}
+                {{article.content | excerpt: 200}}
               </p>
               <div class="text">
                 <a href="#" class="btn btn-outline-primary"> Read More </a>
