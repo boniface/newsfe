@@ -5,10 +5,12 @@ import {ArticlesTodayStore} from '../store/articles-today-store';
 import {ArticleService} from '../services/article.service';
 import {Observable} from 'rxjs';
 import {ZONE} from '../../../shared/util/Utils';
+import {ArticlesLastMonthStore} from '../store/articles-last-month-store';
+import {ArticlesWeekStore} from '../store/articles-week-store';
 
 export class ArticlesWeekQueries extends QueryEntity<ArticlesState, Article> {
   constructor(
-    protected store: ArticlesTodayStore,
+    protected store: ArticlesWeekStore,
     private service: ArticleService
   ) {
     super(store);
@@ -19,25 +21,37 @@ export class ArticlesWeekQueries extends QueryEntity<ArticlesState, Article> {
   }
 
   public getArticles(): Observable<Article[]> {
+    if (this.hasEntity() === false) {
+      this.service
+        .getThisWeekArticles(ZONE)
+        .subscribe();
+      return this.selectAll();
+    }
     return this.selectAll();
   }
 
-  public getTodayZoneArticles(zone: string): Observable<Article[]> {
+  public getWeekZoneArticles(): Observable<Article[]> {
     if (this.hasEntity() === false) {
       this.service
-        .getTodayArticles(zone)
+        .getThisWeekArticles(ZONE)
         .subscribe();
       return this.selectAll({
         filterBy: [
-          entity => entity.site.zone === zone
+          entity => entity.site.zone === ZONE
         ]
       });
     }
+    return this.selectAll({
+      filterBy: [
+        entity => entity.site.zone === ZONE
+      ]
+    });
   }
-  public getTodaySiteArticles(siteCode: string): Observable<Article[]> {
+
+  public getWeekSiteArticles(siteCode: string): Observable<Article[]> {
     if (this.hasEntity() === false) {
       this.service
-        .getTodayArticles(ZONE)
+        .getThisWeekArticles(ZONE)
         .subscribe();
       return this.selectAll({
         filterBy: [
@@ -45,5 +59,10 @@ export class ArticlesWeekQueries extends QueryEntity<ArticlesState, Article> {
         ]
       });
     }
+    return this.selectAll({
+      filterBy: [
+        entity => entity.site.siteCode === siteCode
+      ]
+    });
   }
 }

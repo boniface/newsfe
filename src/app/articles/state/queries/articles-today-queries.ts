@@ -19,21 +19,33 @@ export class ArticlesTodayQueries extends QueryEntity<ArticlesState, Article> {
   }
 
   public getArticles(): Observable<Article[]> {
+    if (this.hasEntity() === false) {
+      this.service
+        .getTodayArticles(ZONE)
+        .subscribe();
+      return this.selectAll();
+    }
     return this.selectAll();
   }
 
-  public getTodayZoneArticles(zone: string): Observable<Article[]> {
+  public getTodayZoneArticles(): Observable<Article[]> {
     if (this.hasEntity() === false) {
       this.service
-        .getTodayArticles(zone)
+        .getTodayArticles(ZONE)
         .subscribe();
       return this.selectAll({
         filterBy: [
-          entity => entity.site.zone === zone
+          entity => entity.site.zone === ZONE
         ]
       });
     }
+    return this.selectAll({
+      filterBy: [
+        entity => entity.site.zone === ZONE
+      ]
+    });
   }
+
   public getTodaySiteArticles(siteCode: string): Observable<Article[]> {
     if (this.hasEntity() === false) {
       this.service
@@ -45,5 +57,10 @@ export class ArticlesTodayQueries extends QueryEntity<ArticlesState, Article> {
         ]
       });
     }
+    return this.selectAll({
+      filterBy: [
+        entity => entity.site.siteCode === siteCode
+      ]
+    });
   }
 }

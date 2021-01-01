@@ -1,14 +1,14 @@
 import {QueryEntity} from '@datorama/akita';
 import {ArticlesState} from '../store/articles-store';
 import {Article} from '../models/article.model';
-import {ArticlesTodayStore} from '../store/articles-today-store';
 import {ArticleService} from '../services/article.service';
 import {Observable} from 'rxjs';
 import {ZONE} from '../../../shared/util/Utils';
+import {ArticlesYesterdayStore} from '../store/articles-yesterday-store';
 
 export class ArticlesYesterdayQueries extends QueryEntity<ArticlesState, Article> {
   constructor(
-    protected store: ArticlesTodayStore,
+    protected store: ArticlesYesterdayStore,
     private service: ArticleService
   ) {
     super(store);
@@ -22,10 +22,10 @@ export class ArticlesYesterdayQueries extends QueryEntity<ArticlesState, Article
     return this.selectAll();
   }
 
-  public getTodayZoneArticles(zone: string): Observable<Article[]> {
+  public getYesterdayZoneArticles(zone: string): Observable<Article[]> {
     if (this.hasEntity() === false) {
       this.service
-        .getTodayArticles(zone)
+        .getYesterdayArticles(zone)
         .subscribe();
       return this.selectAll({
         filterBy: [
@@ -34,10 +34,10 @@ export class ArticlesYesterdayQueries extends QueryEntity<ArticlesState, Article
       });
     }
   }
-  public getTodaySiteArticles(siteCode: string): Observable<Article[]> {
+  public getYesterdaySiteArticles(siteCode: string): Observable<Article[]> {
     if (this.hasEntity() === false) {
       this.service
-        .getTodayArticles(ZONE)
+        .getYesterdayArticles(ZONE)
         .subscribe();
       return this.selectAll({
         filterBy: [

@@ -1,14 +1,14 @@
 import {QueryEntity} from '@datorama/akita';
 import {ArticlesState} from '../store/articles-store';
 import {Article} from '../models/article.model';
-import {ArticlesTodayStore} from '../store/articles-today-store';
 import {ArticleService} from '../services/article.service';
 import {Observable} from 'rxjs';
 import {ZONE} from '../../../shared/util/Utils';
+import {ArticlesLastWeekStore} from '../store/articles-last-week-store';
 
 export class ArticlesLastWeekQueries extends QueryEntity<ArticlesState, Article> {
   constructor(
-    protected store: ArticlesTodayStore,
+    protected store: ArticlesLastWeekStore,
     private service: ArticleService
   ) {
     super(store);
@@ -19,25 +19,37 @@ export class ArticlesLastWeekQueries extends QueryEntity<ArticlesState, Article>
   }
 
   public getArticles(): Observable<Article[]> {
+    if (this.hasEntity() === false) {
+      this.service
+        .getLastWeekArticles(ZONE)
+        .subscribe();
+      return this.selectAll();
+    }
     return this.selectAll();
   }
 
-  public getTodayZoneArticles(zone: string): Observable<Article[]> {
+  public getLastWeekZoneArticles(): Observable<Article[]> {
     if (this.hasEntity() === false) {
       this.service
-        .getTodayArticles(zone)
+        .getLastWeekArticles(ZONE)
         .subscribe();
       return this.selectAll({
         filterBy: [
-          entity => entity.site.zone === zone
+          entity => entity.site.zone === ZONE
         ]
       });
     }
+    return this.selectAll({
+      filterBy: [
+        entity => entity.site.zone === ZONE
+      ]
+    });
   }
-  public getTodaySiteArticles(siteCode: string): Observable<Article[]> {
+
+  public getLastWeekSiteArticles(siteCode: string): Observable<Article[]> {
     if (this.hasEntity() === false) {
       this.service
-        .getTodayArticles(ZONE)
+        .getLastWeekArticles(ZONE)
         .subscribe();
       return this.selectAll({
         filterBy: [
@@ -45,5 +57,10 @@ export class ArticlesLastWeekQueries extends QueryEntity<ArticlesState, Article>
         ]
       });
     }
+    return this.selectAll({
+      filterBy: [
+        entity => entity.site.siteCode === siteCode
+      ]
+    });
   }
 }
