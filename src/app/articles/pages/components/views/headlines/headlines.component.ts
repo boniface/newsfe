@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Article} from '../../../../state/models/articles/article.model';
 
 @Component({
   selector: 'app-headlines',
@@ -6,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./headlines.component.css']
 })
 export class HeadlinesComponent implements OnInit {
+  @Input() articles: Article[];
+  views: number;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
