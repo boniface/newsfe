@@ -9,13 +9,9 @@ export class ArticleCountState implements EntityState<ArticleCount, string> {
   providedIn: 'root'
 })
 
-// @StoreConfig({
-//   name: 'count',
-//   idKey: 'id',
-//   cache: {
-//     ttl: 3600000
-//   }
-// })
+@StoreConfig({
+  name: 'count',
+})
 export class ArticleCountStore extends EntityStore<ArticleCountState, ArticleCount> {
   constructor() {
     super();

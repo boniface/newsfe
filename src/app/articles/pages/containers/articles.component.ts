@@ -14,6 +14,8 @@ import {ArticlesWeekQueries} from '../../state/queries/articles-week-queries';
 import {ArticlesTodayQueries} from '../../state/queries/articles-today-queries';
 import {ArticlesYesterdayQueries} from '../../state/queries/articles-yesterday-queries';
 import {ViewsQueries} from '../../state/queries/views-queries';
+import {CommentsCountQuery} from '../../state/queries/comments-count-query';
+import {ResponseCountQuery} from '../../state/queries/response-count-query';
 
 @Component({
   selector: 'app-articles',
@@ -44,6 +46,8 @@ export class ArticlesComponent extends BaseComponent implements OnInit {
     private articlesTodayQueries: ArticlesTodayQueries,
     private articlesYesterdayQueries: ArticlesYesterdayQueries,
     private viewsQueries: ViewsQueries,
+    private commentsCountQuery: CommentsCountQuery,
+    private responseCountQuery: ResponseCountQuery,
   ) {
     super();
   }
@@ -104,16 +108,37 @@ export class ArticlesComponent extends BaseComponent implements OnInit {
       });
   }
 
+
   getArticleViews(articleId: string): number {
-    let articleViews: number;
+    let articleViews = 0;
     this.viewsQueries
       .getViews(articleId)
       .pipe(takeUntil(this.destroyed))
-      .subscribe( views => articleViews =views.counter);
+      .subscribe(views => articleViews = views.counter);
     return articleViews;
   }
 
-  getTodaySiteArticles(siteCode: string): void {
+  getArticleCommentsCount(articleId: string): number {
+    let count = 0;
+    this.commentsCountQuery
+      .getArticleCommentsCount(articleId)
+      .pipe(takeUntil(this.destroyed))
+      .subscribe(counts => count = counts.counter);
+    return count;
+  }
+
+
+  getArticleResponsesCount(articleId: string): number {
+    let count = 0;
+    this.responseCountQuery
+      .getArticleResponsesCount(articleId)
+      .pipe(takeUntil(this.destroyed))
+      .subscribe(counts => count = counts.counter);
+    return count;
+  }
+
+
+  private getTodaySiteArticles(siteCode: string): void {
     this.articlesTodayQueries
       .getTodaySiteArticles(siteCode)
       .pipe(takeUntil(this.destroyed))
@@ -122,7 +147,7 @@ export class ArticlesComponent extends BaseComponent implements OnInit {
       });
   }
 
-  getYesterdaySiteArticles(siteCode: string): void {
+  private getYesterdaySiteArticles(siteCode: string): void {
     this.articlesYesterdayQueries
       .getYesterdaySiteArticles(siteCode)
       .pipe(takeUntil(this.destroyed))
@@ -131,7 +156,7 @@ export class ArticlesComponent extends BaseComponent implements OnInit {
       });
   }
 
-  getWeekSiteArticles(siteCode: string): void {
+  private getWeekSiteArticles(siteCode: string): void {
     this.articlesWeekQueries
       .getWeekSiteArticles(siteCode)
       .pipe(takeUntil(this.destroyed))
@@ -140,7 +165,7 @@ export class ArticlesComponent extends BaseComponent implements OnInit {
       });
   }
 
-  getLastWeekSiteArticles(siteCode: string): void {
+  private getLastWeekSiteArticles(siteCode: string): void {
     this.articlesLastWeekQueries
       .getLastWeekSiteArticles(siteCode)
       .pipe(takeUntil(this.destroyed))
@@ -149,7 +174,7 @@ export class ArticlesComponent extends BaseComponent implements OnInit {
       });
   }
 
-  getMonthSiteArticles(siteCode: string): void {
+  private getMonthSiteArticles(siteCode: string): void {
     this.articlesMonthQueries
       .geMonthSiteArticles(siteCode)
       .pipe(takeUntil(this.destroyed))
@@ -158,7 +183,7 @@ export class ArticlesComponent extends BaseComponent implements OnInit {
       });
   }
 
-  getLastMonthSiteArticles(siteCode: string): void {
+  private getLastMonthSiteArticles(siteCode: string): void {
     this.articlesLastMonthQueries
       .getLastMonthSiteArticles(siteCode)
       .pipe(takeUntil(this.destroyed))

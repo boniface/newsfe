@@ -23,6 +23,4 @@ export class ViewsQueries extends QueryEntity<ViewsState, Views> {
     }
     return this.selectEntity(id);
   }
-
-
 }

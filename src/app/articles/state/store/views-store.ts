@@ -1,5 +1,4 @@
 import {EntityState, EntityStore, StoreConfig} from '@datorama/akita';
-import {Article} from '../models/article.model';
 import {Injectable} from '@angular/core';
 import {Views} from '../models/views.model';
 
