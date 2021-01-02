@@ -5,7 +5,10 @@ import {ArticleService} from '../services/article.service';
 import {Observable} from 'rxjs';
 import {ZONE} from '../../../shared/util/Utils';
 import {ArticlesYesterdayStore} from '../store/articles-yesterday-store';
-
+import {Injectable} from '@angular/core';
+@Injectable({
+  providedIn: 'root'
+})
 export class ArticlesYesterdayQueries extends QueryEntity<ArticlesState, Article> {
   constructor(
     protected store: ArticlesYesterdayStore,

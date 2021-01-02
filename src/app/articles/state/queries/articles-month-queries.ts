@@ -5,7 +5,11 @@ import {ArticleService} from '../services/article.service';
 import {Observable} from 'rxjs';
 import {ZONE} from '../../../shared/util/Utils';
 import {ArticlesMonthStore} from '../store/articles-month-store';
+import {Injectable} from '@angular/core';
 
+@Injectable({
+  providedIn: 'root'
+})
 export class ArticlesMonthQueries extends QueryEntity<ArticlesState, Article> {
   constructor(
     protected store: ArticlesMonthStore,

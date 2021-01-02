@@ -1,13 +1,15 @@
 import {QueryEntity} from '@datorama/akita';
 import {ArticlesState} from '../store/articles-store';
 import {Article} from '../models/article.model';
-import {ArticlesTodayStore} from '../store/articles-today-store';
 import {ArticleService} from '../services/article.service';
 import {Observable} from 'rxjs';
 import {ZONE} from '../../../shared/util/Utils';
-import {ArticlesLastMonthStore} from '../store/articles-last-month-store';
 import {ArticlesWeekStore} from '../store/articles-week-store';
+import {Injectable} from '@angular/core';
 
+@Injectable({
+  providedIn: 'root'
+})
 export class ArticlesWeekQueries extends QueryEntity<ArticlesState, Article> {
   constructor(
     protected store: ArticlesWeekStore,
