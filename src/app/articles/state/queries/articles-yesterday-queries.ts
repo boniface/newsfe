@@ -22,14 +22,14 @@ export class ArticlesYesterdayQueries extends QueryEntity<ArticlesState, Article
     return this.selectAll();
   }
 
-  public getYesterdayZoneArticles(zone: string): Observable<Article[]> {
+  public getYesterdayZoneArticles(): Observable<Article[]> {
     if (this.hasEntity() === false) {
       this.service
-        .getYesterdayArticles(zone)
+        .getYesterdayArticles(ZONE)
         .subscribe();
       return this.selectAll({
         filterBy: [
-          entity => entity.site.zone === zone
+          entity => entity.site.zone === ZONE
         ]
       });
     }

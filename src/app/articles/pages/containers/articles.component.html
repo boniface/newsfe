@@ -50,8 +50,9 @@
             </div>
             <div class="card-footer text-muted text-end fs-5 gx-3">
               Published: <i class="fas fa-clock mr-1 text-danger"></i>  {{article.date | dateAgo}}
-              <i class="fas fa-eye mr-1 text-primary text-end "></i> Views
+              <i class="fas fa-eye mr-1 text-primary text-end ">{{getArticleViews(article.id)}}</i> Views
               <i class="fas fa-comments mr-1 text-primary text-end">100</i> Comments
+              <i class="fas fa-comment-alt mr-1 text-primary text-end">100</i> Responses
             </div>
             <hr/>
           </div>
