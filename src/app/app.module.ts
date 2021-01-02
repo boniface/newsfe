@@ -6,7 +6,7 @@ import {HomeComponent} from './modules/general/home/home.component';
 import {NotFoundComponent} from './modules/general/not-found/not-found.component';
 import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
-import {ArticleService} from './articles/state/services/article.service';
+import {ArticleService} from './articles/state/services/articles/article.service';
 import {ZONE} from './shared/util/Utils';
 
 export function appInit(articleService: ArticleService) {
