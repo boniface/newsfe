@@ -1,1 +1,47 @@
-<p>single-article works!</p>
+<div class="container" xmlns="http://www.w3.org/1999/html">
+  <div class="row">
+    <div class="col-9">
+
+      <div class="card text">
+        <div class="card-header text-primary fw-bold fs-5 gx-3">
+          <img src="{{article.site.logo}}" width="30" height="30" class="rounded-circle"
+               alt="...">
+          <a href="/website/{{article.site.siteCode}}" routerLinkActive="active"
+             class="text-decoration-none"> {{article.site.name}}</a>
+
+        </div>
+        <div class="card-body">
+          <img src="{{article.image}}" class="card-img-top" alt="...">
+          <h5 class="card-title fw-bold fs-2 text-primary">
+            <a href="/news/{{article.seoSlug}}/{{article.id}}" routerLinkActive="active"
+               class="text-decoration-none">{{article.title}}</a>
+          </h5>
+          <p class="card-text fs-5 ">
+            {{article.content | excerpt: 400}}
+          </p>
+          <div class="text">
+            <a href="{{article.articleLink}}" target="_blank" class="btn btn-outline-primary">Visit Site to Read
+              More</a>
+          </div>
+        </div>
+        <div class="card-footer text-muted text-end  gx-3 p-3">
+          <i class="fas fa-clock mr-1 text-info"></i>  {{article.date | dateAgo}}
+          <i class="fas fa-eye mr-1 text-primary p-2 "> 0</i> Views
+          <i class="fas fa-comment-alt mr-1 text-success p-2"> 0</i> Comments
+          <i class="fas fa-comments mr-1 text-warning p-2"> 0</i> Responses
+        </div>
+        <hr/>
+      </div>
+
+
+    </div>
+
+    <div class="col-3">
+      <app-sidebar></app-sidebar>
+    </div>
+  </div>
+</div>
+
+
+
+

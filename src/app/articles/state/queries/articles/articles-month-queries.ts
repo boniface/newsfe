@@ -50,7 +50,7 @@ export class ArticlesMonthQueries extends QueryEntity<ArticlesState, Article> {
     });
   }
 
-  public geMonthSiteArticles(siteCode: string): Observable<Article[]> {
+  public getMonthSiteArticles(siteCode: string): Observable<Article[]> {
     if (this.hasEntity() === false) {
       this.service
         .getThisMonthArticles(ZONE)

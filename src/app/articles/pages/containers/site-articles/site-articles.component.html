@@ -1,1 +1,68 @@
-<p>site-articles works!</p>
+<div class="container" xmlns="http://www.w3.org/1999/html">
+  <div class="row">
+    <div class="col-9">
+      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" id="pills-today-tab" data-bs-toggle="pill" href="#pills-today" role="tab"
+             aria-controls="pills-today" aria-selected="true">Today</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="pills-yesterday-tab" data-bs-toggle="pill" href="#pills-yesterday" role="tab"
+             aria-controls="pills-yesterday" aria-selected="false">Yesterday</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="pills-this week-tab" data-bs-toggle="pill" href="#pills-this-week" role="tab"
+             aria-controls="pills-this week" aria-selected="false">Rest of This Week</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="pills-last week-tab" data-bs-toggle="pill" href="#pills-last-week" role="tab"
+             aria-controls="pills-last week" aria-selected="false">Last Week</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="pills-this month-tab" data-bs-toggle="pill" href="#pills-this-month" role="tab"
+             aria-controls="pills-this week" aria-selected="false">Rest of This Month</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="pills-last month-tab" data-bs-toggle="pill" href="#pills-last-month" role="tab"
+             aria-controls="pills-last month" aria-selected="false">Last Month</a>
+        </li>
+      </ul>
+
+      <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-today" role="tabpanel" aria-labelledby="pills-today-tab">
+          <app-headlines [articles]="todayArticles"></app-headlines>
+        </div>
+
+
+        <div class="tab-pane fade" id="pills-yesterday" role="tabpanel" aria-labelledby="pills-yesterday-tab">
+          <app-headlines [articles]="yesterdayArticles"></app-headlines>
+
+        </div>
+        <div class="tab-pane fade" id="pills-this-week" role="tabpanel" aria-labelledby="pills-this-week-tab">
+          <app-headlines [articles]="thisWeekArticles"></app-headlines>
+
+        </div>
+        <div class="tab-pane fade" id="pills-last-week" role="tabpanel" aria-labelledby="pills-last-week-tab">
+          <app-headlines [articles]="lastWeekArticles"></app-headlines>
+
+        </div>
+        <div class="tab-pane fade" id="pills-this-month" role="tabpanel" aria-labelledby="pills-this-month-tab">
+          <app-headlines [articles]="thisMonthArticles"></app-headlines>
+
+        </div>
+
+        <div class="tab-pane fade" id="pills-last-month" role="tabpanel" aria-labelledby="pills-last-month-tab">
+          <app-headlines [articles]="lastMonthArticles"></app-headlines>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-3">
+      <app-sidebar></app-sidebar>
+    </div>
+  </div>
+</div>
+
+
+
+
