@@ -18,6 +18,12 @@ export class ArticlesTodayQueries extends QueryEntity<ArticlesState, Article> {
   }
 
   public getArticle(id: string): Observable<Article> {
+    if (this.hasEntity(id) === false) {
+      this.service
+        .getArticle(id)
+        .subscribe();
+      return this.selectEntity(id);
+    }
     return this.selectEntity(id);
   }
 

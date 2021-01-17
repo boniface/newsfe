@@ -35,6 +35,15 @@ export class ArticleService {
   ) {
   }
 
+  public getArticle(linkhash: string): Observable<Article> {
+    const url = BASE_URL + this.base + '/get/' + linkhash;
+    return this.http.get<Article>(url, this.options)
+      .pipe(
+        tap(story => this.articlesTodayStore.add(story)),
+        catchError(ApiErrors.handleError<Article>('get Key '))
+      );
+  }
+
   public getInitialData(zone: string): Observable<Article[]> {
     const url = BASE_URL + this.base + 'articles/month/' + zone.toUpperCase();
     return this.http

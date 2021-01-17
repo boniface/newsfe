@@ -1,4 +1,5 @@
 import {Website} from '../../../../websites/state/models/website.model';
+import {ArticleStats} from '../stats/article-stats.model';
 
 export interface Article {
   id: string;
@@ -11,4 +12,6 @@ export interface Article {
   image?: string;
   date: Date;
   seoSlug: string;
+  articleStats?: ArticleStats;
 }
+
