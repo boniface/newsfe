@@ -14,6 +14,8 @@ import {ArticlesYesterdayStore} from '../../store/articles/articles-yesterday-st
 import {ArticlesWeekStore} from '../../store/articles/articles-week-store';
 import {ArticlesLastWeekStore} from '../../store/articles/articles-last-week-store';
 import {ArticlesMonthStore} from '../../store/articles/articles-month-store';
+import {ArticlesRestOfWeekStore} from '../../store/articles/articles-rest-of-week-store';
+import {RestOfMonthStore} from '../../store/articles/rest-of-month-store';
 
 @Injectable({
   providedIn: 'root'
@@ -31,12 +33,14 @@ export class ArticleService {
     private articlesWeekStore: ArticlesWeekStore,
     private articlesLastWeekStore: ArticlesLastWeekStore,
     private articlesMonthStore: ArticlesMonthStore,
-    private  articlesLastMonthStore: ArticlesLastMonthStore
+    private  articlesLastMonthStore: ArticlesLastMonthStore,
+    private articlesRestOfWeekStore: ArticlesRestOfWeekStore,
+    private restOfMonthStore: RestOfMonthStore,
   ) {
   }
 
   public getArticle(linkhash: string): Observable<Article> {
-    const url = BASE_URL + this.base + '/get/' + linkhash;
+    const url = BASE_URL + this.base + '/' + linkhash;
     return this.http.get<Article>(url, this.options)
       .pipe(
         tap(story => this.articlesTodayStore.add(story)),
@@ -53,6 +57,15 @@ export class ArticleService {
         catchError(ApiErrors.handleError('Zone Stories', []))
       );
   }
+  public getTodayArticleCount(zone: string): Observable<ArticleCount> {
+    const url = BASE_URL + this.base + '/today/count/' + zone.toUpperCase();
+    return this.http
+      .get<ArticleCount>(url, this.options)
+      .pipe(
+        tap(articlesCount => this.articleCountStore.add(articlesCount)),
+        catchError(ApiErrors.handleError<ArticleCount>('Zone Stories'))
+      );
+  }
 
   public getTodayArticles(zone: string): Observable<Article[]> {
     const url = BASE_URL + this.base + '/today/' + zone.toUpperCase();
@@ -64,15 +77,6 @@ export class ArticleService {
       );
   }
 
-  public getTodayArticleCount(zone: string): Observable<ArticleCount> {
-    const url = BASE_URL + this.base + '/today/count/' + zone.toUpperCase();
-    return this.http
-      .get<ArticleCount>(url, this.options)
-      .pipe(
-        tap(articlesCount => this.articleCountStore.add(articlesCount)),
-        catchError(ApiErrors.handleError<ArticleCount>('Zone Stories'))
-      );
-  }
 
   public getYesterdayArticles(zone: string): Observable<Article[]> {
     const url = BASE_URL + this.base + '/yesterday/' + zone.toUpperCase();
@@ -90,6 +94,16 @@ export class ArticleService {
       .get<Article[]>(url, this.options)
       .pipe(
         tap(articles => this.articlesWeekStore.set(articles)),
+        catchError(ApiErrors.handleError('Zone Stories', []))
+      );
+  }
+
+  public getRestOfWeekArticles(zone: string): Observable<Article[]> {
+    const url = BASE_URL + this.base + '/restweek/' + zone.toUpperCase();
+    return this.http
+      .get<Article[]>(url, this.options)
+      .pipe(
+        tap(articles => this.articlesRestOfWeekStore.set(articles)),
         catchError(ApiErrors.handleError('Zone Stories', []))
       );
   }
@@ -114,6 +128,16 @@ export class ArticleService {
         catchError(ApiErrors.handleError('Zone Stories', []))
       );
   }
+  public getRestOfMonthArticles(zone: string): Observable<Article[]> {
+    const url = BASE_URL + this.base + '/restmonth/' + zone.toUpperCase();
+    return this.http
+      .get<Article[]>(url, this.options)
+      .pipe(
+        tap(articles => this.restOfMonthStore.set(articles)),
+        catchError(ApiErrors.handleError('Zone Stories', []))
+      );
+  }
+
   public getLastMonthArticles(zone: string): Observable<Article[]> {
     const url = BASE_URL + this.base + '/lastmonth/' + zone.toUpperCase();
     return this.http

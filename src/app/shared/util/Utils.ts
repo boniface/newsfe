@@ -3,8 +3,8 @@ import {Md5} from 'ts-md5';
 import {HttpHeaders} from '@angular/common/http';
 import * as moment from 'moment';
 
-
-export const BASE_URL = 'https://newsapi.africahash.com';
+// https://newsapi.africahash.com
+export const BASE_URL = 'http://localhost:9000';
 export const ZONE = 'ZM';
 
 function uuidv4() {
