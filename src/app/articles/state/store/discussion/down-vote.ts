@@ -9,13 +9,9 @@ export interface DownVoteState extends EntityState<DownVote, string> {
   providedIn: 'root'
 })
 @StoreConfig({
-  name: 'users',
-  idKey: 'Id',
-  cache: {
-    ttl: 3600000
-  }
+  name: 'downvotes',
+  idKey: 'commentId',
 })
-
 export class DownVoteStore extends EntityStore<DownVoteState, DownVote> {
   constructor() {
     super();

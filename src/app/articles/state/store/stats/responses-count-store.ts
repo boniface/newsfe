@@ -1,5 +1,4 @@
 import {EntityState, EntityStore, StoreConfig} from '@datorama/akita';
-import {Views} from '../../models/stats/views.model';
 import {Injectable} from '@angular/core';
 import {ResponsesCount} from '../../models/stats/responses-count-model';
 
