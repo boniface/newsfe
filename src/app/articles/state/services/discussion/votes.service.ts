@@ -15,7 +15,7 @@ import {UpVoteStore} from '../../store/discussion/up-vote-store';
   providedIn: 'root'
 })
 export class VotesService {
-  private base = '/articles';
+  private base = '/discuss/vote';
   private options = {headers: Util.headers()};
 
   constructor(
@@ -27,8 +27,8 @@ export class VotesService {
     private upVoteStore: UpVoteStore,
   ) { }
 
-  public getArticle(linkhash: string): Observable<Article> {
-    const url = BASE_URL + this.base + '/' + linkhash;
+  public getCommentsVotes(id: string): Observable<Article> {
+    const url = BASE_URL + this.base + '/get/' + id;
     return this.http.get<Article>(url, this.options)
       .pipe(
         tap(story => this.articlesTodayStore.add(story)),
