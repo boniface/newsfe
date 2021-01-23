@@ -41,17 +41,19 @@ export class ArticlesQueries extends QueryEntity<ArticlesState, Article> {
     }
   }
 
-  public getYesterdayArticles(zone: string): Observable<Article[]> {
-
-    return this.selectAll({
-      filterBy: entity => entity.site.zone === zone &&
-        isBefore(entity.date, AppDates.today()) &&
-        isAfter(entity.date, AppDates.yesterday())
-
-
-    });
+  public getTheLatest(zone: string): Observable<Article[]> {
+    if (this.hasEntity() === false) {
+      this.service
+        .getTodayArticles(zone)
+        .subscribe();
+      return this.selectAll({
+        limitTo: 15,
+        filterBy: [
+          entity => entity.site.zone === zone
+        ]
+      });
+    }
   }
-
   public getThisWeekArticles(zone: string): Observable<Article[]> {
     return this.selectAll({
       filterBy: entity => entity.site.zone === zone &&

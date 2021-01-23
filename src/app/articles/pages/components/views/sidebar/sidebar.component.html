@@ -14,8 +14,11 @@
   <div *ngFor="let article of articles">
     <a href="#" class="list-group-item list-group-item-action">
       <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">{{article.site.siteCode}} </h5>
-        <small class="text-muted">3 days ago</small>
+        <h5 class="mb-1"> <img src="{{article.site.logo}}" width="30" height="30" class="rounded-circle"
+                               alt="...">
+          <a href="/website/{{article.site.siteCode}}" routerLinkActive="active" class="text-decoration-none"> {{article.site.siteCode}}</a>
+        </h5>
+        <small class="text-muted">{{article.date | dateAgo}}</small>
       </div>
       <p class="mb-1">{{article.title}}</p>
     </a>

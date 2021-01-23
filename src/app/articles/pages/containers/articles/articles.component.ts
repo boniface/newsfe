@@ -109,9 +109,8 @@ export class ArticlesComponent extends BaseComponent implements OnInit {
       });
 
     this.articleQueries
-      .getTodayArticles(ZONE)
-      .pipe(takeUntil(this.destroyed))
-      .pipe(take(15))
+      .getTheLatest(ZONE)
+      .pipe( takeUntil(this.destroyed))
       .subscribe(articles => {
         this.latestArticles = articles;
       });

@@ -4,8 +4,10 @@ import {BaseComponent} from '../../../../shared/BaseComponent';
 import {CanonicalService} from '../../../../shared/util/canonical.service';
 import {Meta, Title} from '@angular/platform-browser';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ArticlesTodayQueries} from '../../../state/queries/articles/articles-today-queries';
 import {takeUntil} from 'rxjs/operators';
+import {SingleArticleQuery} from '../../../state/queries/discussion/single-article-query';
+import {ArticlesQueries} from '../../../state/queries/articles/articles-queries';
+import {ZONE} from '../../../../shared/util/Utils';
 
 @Component({
   selector: 'app-single-article',
@@ -15,12 +17,14 @@ import {takeUntil} from 'rxjs/operators';
 export class SingleArticleComponent extends BaseComponent implements OnInit {
   article: Article;
   linkhash: string;
+  latestArticles: Article[];
   constructor(
     private canonicalService: CanonicalService,
     private titleService: Title,
     private metaTagService: Meta,
     private activeRoute: ActivatedRoute,
-    private articlesTodayQueries: ArticlesTodayQueries,
+    private articleQuery: SingleArticleQuery,
+    private articleQueries: ArticlesQueries,
     private router: Router,
   ) {
     super();
@@ -31,10 +35,17 @@ export class SingleArticleComponent extends BaseComponent implements OnInit {
       .subscribe(params => {
         this.linkhash = params.id;
       });
-    this.articlesTodayQueries
+    this.articleQuery
       .getArticle(this.linkhash)
       .pipe(takeUntil(this.destroyed))
       .subscribe( result => this.article = result);
+    this.articleQueries
+      .getTheLatest(ZONE)
+      .pipe( takeUntil(this.destroyed))
+      .subscribe(articles => {
+        this.latestArticles = articles;
+      });
+
   }
 
 }

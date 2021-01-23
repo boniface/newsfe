@@ -26,18 +26,17 @@
         </div>
         <div class="card-footer text-muted text-end  gx-3 p-3">
           <i class="fas fa-clock mr-1 text-info"></i>  {{article.date | dateAgo}}
-          <i class="fas fa-eye mr-1 text-primary p-2 "> 0</i> Views
-          <i class="fas fa-comment-alt mr-1 text-success p-2"> 0</i> Comments
-          <i class="fas fa-comments mr-1 text-warning p-2"> 0</i> Responses
+          <i class="fas fa-eye mr-1 text-primary p-2 "> {{article?.articleStats?.viewsCounter}} </i> Views
+          <i class="fas fa-comment-alt mr-1 text-success p-2"> {{article?.articleStats?.commentsCounter}} </i> Comments
+          <i class="fas fa-comments mr-1 text-warning p-2"> {{article?.articleStats?.responsesCounter}} </i> Responses
         </div>
         <hr/>
       </div>
 
-
     </div>
 
     <div class="col-3">
-      <app-sidebar></app-sidebar>
+      <app-sidebar [articles]="latestArticles"></app-sidebar>
     </div>
   </div>
 </div>

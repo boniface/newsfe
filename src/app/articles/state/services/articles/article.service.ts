@@ -49,7 +49,7 @@ export class ArticleService {
   }
 
   public getInitialData(zone: string): Observable<Article[]> {
-    const url = BASE_URL + this.base + 'articles/month/' + zone.toUpperCase();
+    const url = BASE_URL + this.base + '/month/' + zone.toUpperCase();
     return this.http
       .get<Article[]>(url, this.options)
       .pipe(
