@@ -9,9 +9,9 @@ import {ArticleCommentResponseStore} from '../../store/discussion/article-commen
 import {ArticlesStore} from '../../store/articles/articles-store';
 import {DownVoteStore} from '../../store/discussion/down-vote-store';
 import {UpVoteStore} from '../../store/discussion/up-vote-store';
-import {Comment} from '../../models/discussion/comment.model';
 import {SingleArticle} from '../../models/discussion/single-article.model';
 import {ArticleCommentResponse} from '../../models/discussion/article-comment-response.model';
+import {Response} from '../../models/discussion/response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +31,7 @@ export class ArticleCommentResponseService {
   }
 
 
-  public postResponse(discussion: Comment): Observable<SingleArticle> {
+  public postResponse(discussion: Response): Observable<SingleArticle> {
     const url = BASE_URL + this.base + '/add';
     return this.http.post<SingleArticle>(url, discussion, this.options)
       .pipe(
@@ -49,8 +49,8 @@ export class ArticleCommentResponseService {
       );
   }
 
-  public getResponse(commentId: string): Observable<ArticleCommentResponse> {
-    const url = BASE_URL + this.base + '/' + commentId;
+  public getResponse(responseId: string): Observable<ArticleCommentResponse> {
+    const url = BASE_URL + this.base + '/' + responseId;
     return this.http.get<ArticleCommentResponse>(url, this.options)
       .pipe(
         tap(response => {
