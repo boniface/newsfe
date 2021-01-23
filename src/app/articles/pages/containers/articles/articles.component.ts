@@ -5,7 +5,7 @@ import {CanonicalService} from '../../../../shared/util/canonical.service';
 import {Meta, Title} from '@angular/platform-browser';
 import {Router} from '@angular/router';
 import {ArticlesQueries} from '../../../state/queries/articles/articles-queries';
-import {takeUntil} from 'rxjs/operators';
+import {take, takeUntil} from 'rxjs/operators';
 import {ZONE} from '../../../../shared/util/Utils';
 import {ArticlesLastMonthQueries} from '../../../state/queries/articles/articles-last-month-queries';
 import {ArticlesLastWeekQueries} from '../../../state/queries/articles/articles-last-week-queries';
@@ -31,6 +31,7 @@ export class ArticlesComponent extends BaseComponent implements OnInit {
   lastWeekArticles: Article[];
   thisMonthArticles: Article[];
   lastMonthArticles: Article[];
+  latestArticles: Article[];
 
 
   constructor(
@@ -106,6 +107,15 @@ export class ArticlesComponent extends BaseComponent implements OnInit {
       .subscribe(articles => {
         this.yesterdayArticles = articles;
       });
+
+    this.articleQueries
+      .getTodayArticles(ZONE)
+      .pipe(takeUntil(this.destroyed))
+      .pipe(take(15))
+      .subscribe(articles => {
+        this.latestArticles = articles;
+      });
+
   }
 
 
