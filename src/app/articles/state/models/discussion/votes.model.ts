@@ -3,5 +3,5 @@ import {UpVote} from './up-vote.model';
 
 export interface Votes {
   upVotes?: UpVote;
-  downVote?: DownVote;
+  downVotes?: DownVote;
 }

@@ -1,8 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BASE_URL, Util} from '../../../../shared/util/Utils';
 import {Observable} from 'rxjs';
-import {Article} from '../../models/articles/article.model';
 import {catchError, tap} from 'rxjs/operators';
 import {ApiErrors} from '../../../../shared/util/ApiErrors';
 import {ArticleCommentStore} from '../../store/discussion/article-comment-store';
@@ -10,6 +9,8 @@ import {ArticleCommentResponseStore} from '../../store/discussion/article-commen
 import {ArticlesStore} from '../../store/articles/articles-store';
 import {DownVoteStore} from '../../store/discussion/down-vote-store';
 import {UpVoteStore} from '../../store/discussion/up-vote-store';
+import {Votes} from '../../models/discussion/votes.model';
+import {Vote} from '../../models/discussion/vote-model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,24 +26,45 @@ export class VotesService {
     private articlesStore: ArticlesStore,
     private downVoteStore: DownVoteStore,
     private upVoteStore: UpVoteStore,
-  ) { }
+  ) {
+  }
 
-  public getCommentsVotes(id: string): Observable<Article> {
-    const url = BASE_URL + this.base + '/get/' + id;
-    return this.http.get<Article>(url, this.options)
+  public getCommentsVotes(commentId: string): Observable<Votes> {
+    const url = BASE_URL + this.base + '/get/' + commentId;
+    return this.http.get<Votes>(url, this.options)
       .pipe(
-        tap(story => this.articlesTodayStore.add(story)),
-        catchError(ApiErrors.handleError<Article>('get Key '))
+        tap(votes => {
+            this.downVoteStore.add(votes?.downVotes);
+            this.upVoteStore.add(votes?.upVotes);
+          }
+        ),
+        catchError(ApiErrors.handleError<Votes>('get Key '))
       );
   }
 
-  public getInitialData(zone: string): Observable<Article[]> {
-    const url = BASE_URL + this.base + 'articles/month/' + zone.toUpperCase();
-    return this.http
-      .get<Article[]>(url, this.options)
+  public castVoteUp(vote: Vote): Observable<Votes> {
+    const url = BASE_URL + this.base + '/up';
+    return this.http.post<Votes>(url, vote, this.options)
       .pipe(
-        tap(articles => this.articlesStore.set(articles)),
-        catchError(ApiErrors.handleError('Zone Stories', []))
+        tap(votes => {
+            this.downVoteStore.add(votes?.downVotes);
+            this.upVoteStore.add(votes?.upVotes);
+          }
+        ),
+        catchError(ApiErrors.handleError<Votes>('get Key '))
+      );
+  }
+
+  public castVoteDown(vote: Vote): Observable<Votes> {
+    const url = BASE_URL + this.base + '/down';
+    return this.http.post<Votes>(url, vote, this.options)
+      .pipe(
+        tap(votes => {
+            this.downVoteStore.add(votes?.downVotes);
+            this.upVoteStore.add(votes?.upVotes);
+          }
+        ),
+        catchError(ApiErrors.handleError<Votes>('get Key '))
       );
   }
 }

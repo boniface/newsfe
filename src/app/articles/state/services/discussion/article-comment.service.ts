@@ -1,49 +1,75 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BASE_URL, Util} from '../../../../shared/util/Utils';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Article} from '../../models/articles/article.model';
 import {catchError, tap} from 'rxjs/operators';
 import {ApiErrors} from '../../../../shared/util/ApiErrors';
 import {ArticleCommentStore} from '../../store/discussion/article-comment-store';
-import {ArticlesRestOfWeekStore} from '../../store/articles/articles-rest-of-week-store';
 import {ArticleCommentResponseStore} from '../../store/discussion/article-comment-response-store';
 import {ArticlesStore} from '../../store/articles/articles-store';
 import {DownVoteStore} from '../../store/discussion/down-vote-store';
 import {UpVoteStore} from '../../store/discussion/up-vote-store';
+import {Comment} from '../../models/discussion/comment.model';
+import {SingleArticle} from '../../models/discussion/single-article.model';
+import {ArticleComment} from '../../models/discussion/article-comment.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArticleCommentService {
-  private base = '/articles';
+  private base = '/discuss/comment';
   private options = {headers: Util.headers()};
 
   constructor(
     private http: HttpClient,
-    private article: ArticleCommentStore,
+    private articleCommentStore: ArticleCommentStore,
     private articleCommentResponseStore: ArticleCommentResponseStore,
     private articlesStore: ArticlesStore,
     private downVoteStore: DownVoteStore,
     private upVoteStore: UpVoteStore,
-  ) { }
+  ) {
+  }
 
-  public getArticle(linkhash: string): Observable<Article> {
-    const url = BASE_URL + this.base + '/' + linkhash;
-    return this.http.get<Article>(url, this.options)
+
+  public postComment(discussion: Comment): Observable<SingleArticle> {
+    const url = BASE_URL + this.base + '/add';
+    return this.http.post<SingleArticle>(url, discussion, this.options)
       .pipe(
-        tap(story => this.articlesTodayStore.add(story)),
-        catchError(ApiErrors.handleError<Article>('get Key '))
+        tap(article => {
+            this.articlesStore.add(article.article);
+            this.articleCommentStore.add(article.articleComments);
+            for (const comment of article.articleComments) {
+              this.articleCommentResponseStore.add(comment.responses);
+              this.downVoteStore.add(comment.votes?.downVotes);
+              this.upVoteStore.add(comment.votes?.upVotes);
+            }
+          }
+        ),
+        catchError(ApiErrors.handleError<SingleArticle>('get Key '))
       );
   }
 
-  public getInitialData(zone: string): Observable<Article[]> {
-    const url = BASE_URL + this.base + 'articles/month/' + zone.toUpperCase();
-    return this.http
-      .get<Article[]>(url, this.options)
+  public getComment(commentId: string): Observable<ArticleComment> {
+    const url = BASE_URL + this.base + '/' + commentId;
+    return this.http.get<ArticleComment>(url, this.options)
       .pipe(
-        tap(articles => this.articlesStore.set(articles)),
-        catchError(ApiErrors.handleError('Zone Stories', []))
+        tap(comments => {
+            this.articleCommentStore.add(comments);
+          }
+        ),
+        catchError(ApiErrors.handleError<ArticleComment>('get Key '))
+      );
+  }
+
+  public getArticleComments(articleId: string): Observable<ArticleComment> {
+    const url = BASE_URL + this.base + '/all/' + articleId;
+    return this.http.get<ArticleComment>(url, this.options)
+      .pipe(
+        tap(comments => {
+            this.articleCommentStore.add(comments);
+          }
+        ),
+        catchError(ApiErrors.handleError<ArticleComment>('get Key '))
       );
   }
 }

@@ -38,7 +38,7 @@ export class SingleArticleService {
             this.articleCommentStore.add(article.articleComments);
             for (const comment of article.articleComments) {
               this.articleCommentResponseStore.add(comment.responses);
-              this.downVoteStore.add(comment.votes?.downVote);
+              this.downVoteStore.add(comment.votes?.downVotes);
               this.upVoteStore.add(comment.votes?.upVotes);
             }
           }
