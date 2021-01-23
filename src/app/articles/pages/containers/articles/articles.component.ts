@@ -5,7 +5,7 @@ import {CanonicalService} from '../../../../shared/util/canonical.service';
 import {Meta, Title} from '@angular/platform-browser';
 import {Router} from '@angular/router';
 import {ArticlesQueries} from '../../../state/queries/articles/articles-queries';
-import {take, takeUntil} from 'rxjs/operators';
+import {takeUntil} from 'rxjs/operators';
 import {ZONE} from '../../../../shared/util/Utils';
 import {ArticlesLastMonthQueries} from '../../../state/queries/articles/articles-last-month-queries';
 import {ArticlesLastWeekQueries} from '../../../state/queries/articles/articles-last-week-queries';

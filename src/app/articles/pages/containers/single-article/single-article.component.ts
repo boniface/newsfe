@@ -18,6 +18,7 @@ export class SingleArticleComponent extends BaseComponent implements OnInit {
   article: Article;
   linkhash: string;
   latestArticles: Article[];
+
   constructor(
     private canonicalService: CanonicalService,
     private titleService: Title,
@@ -38,10 +39,18 @@ export class SingleArticleComponent extends BaseComponent implements OnInit {
     this.articleQuery
       .getArticle(this.linkhash)
       .pipe(takeUntil(this.destroyed))
-      .subscribe( result => this.article = result);
+      .subscribe(story => {
+          this.article = story;
+          this.canonicalService.setCanonicalURL();
+          this.titleService.setTitle(story?.title);
+          this.metaTagService.updateTag(
+            {name: 'Description', content: story?.metaDescription}
+          );
+        }
+      );
     this.articleQueries
       .getTheLatest(ZONE)
-      .pipe( takeUntil(this.destroyed))
+      .pipe(takeUntil(this.destroyed))
       .subscribe(articles => {
         this.latestArticles = articles;
       });
