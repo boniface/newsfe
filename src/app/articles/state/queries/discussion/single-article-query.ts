@@ -19,7 +19,6 @@ export class SingleArticleQuery extends QueryEntity<ArticlesState, Article> {
 
   public getArticle(id: string): Observable<Article> {
     if (this.hasEntity(id) === false) {
-      console.log('This is executed ');
       this.service
         .getArticle(id)
         .subscribe();
