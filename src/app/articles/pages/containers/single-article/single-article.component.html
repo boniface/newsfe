@@ -1,7 +1,8 @@
-<div class="container" xmlns="http://www.w3.org/1999/html">
+<div class="container-fluid" xmlns="http://www.w3.org/1999/html">
   <div class="row">
 
-    <div class="col-9">
+    <div class="col-md-9">
+
       <div class="card text">
         <div class="card-header text-primary fw-bold fs-5 gx-3">
           <img src="{{article.site.logo}}" width="30" height="30" class="rounded-circle"
@@ -33,46 +34,37 @@
         <hr/>
       </div>
 
-      <p>
-        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-          Link with href
-        </a>
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-          Button with data-bs-target
-        </button>
-      </p>
-      <div class="collapse" id="collapseExample">
-        <div class="card card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+      <div class="card text" *ngFor="let comment of articles.">
+        <div class="card-header text-primary fw-bold fs-5 gx-3">
+          Header
         </div>
-      </div>
+        <div class="card-body">
+          Body
+        </div>
+        <div class="card-footer text-muted text-end  gx-3 p-3">
+          Footer
+        </div>
 
-      <p>
-        <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a>
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Toggle second element</button>
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Toggle both elements</button>
-      </p>
-      <div class="row">
-        <div class="col">
-          <div class="collapse multi-collapse" id="multiCollapseExample1">
-            <div class="card card-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-            </div>
+        <hr/>
+        <div class="card text">
+          <div class="card-header text-primary fw-bold fs-5 gx-3">
+            Header
+          </div>
+          <div class="card-body">
+            Body
+          </div>
+          <div class="card-footer text-muted text-end  gx-3 p-3">
+            Footer
           </div>
         </div>
-        <div class="col">
-          <div class="collapse multi-collapse" id="multiCollapseExample2">
-            <div class="card card-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-            </div>
-          </div>
-        </div>
+        <hr/>
       </div>
 
 
     </div>
 
-    <div class="col-3">
+
+    <div class="col-md-3">
       <app-sidebar [articles]="latestArticles"></app-sidebar>
     </div>
   </div>

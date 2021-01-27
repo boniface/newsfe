@@ -1,36 +1,40 @@
-<div class="text-center">
-  <img src="https://via.placeholder.com/336x280" class="img-fluid" alt="..." align="centre">
+
   <hr/>
-  <img src="https://via.placeholder.com/300x600" class="img-fluid" alt="..." align="centre">
-  <hr/>
-</div>
-<div>
-  <div class="list-group">
-    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">Today's Latest News</h5>
+  <div class="text-center">
+    <img src="https://via.placeholder.com/336x280" class="img-fluid" alt="..." align="centre">
+    <hr/>
+    <img src="https://via.placeholder.com/300x600" class="img-fluid" alt="..." align="centre">
+    <hr/>
+  </div>
+  <div>
+    <div class="list-group">
+      <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Today's Latest News</h5>
+        </div>
+      </a>
+      <div *ngFor="let article of articles">
+        <a href="#" class="list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1"><img src="{{article.site.logo}}" width="30" height="30" class="rounded-circle"
+                                  alt="...">
+              <a href="/website/{{article.site.siteCode}}" routerLinkActive="active"
+                 class="text-decoration-none"> {{article.site.siteCode}}</a>
+            </h5>
+            <small class="text-muted">{{article.date | dateAgo}}</small>
+          </div>
+          <p class="mb-1">{{article.title}}</p>
+        </a>
       </div>
-    </a>
-  <div *ngFor="let article of articles">
-    <a href="#" class="list-group-item list-group-item-action">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1"> <img src="{{article.site.logo}}" width="30" height="30" class="rounded-circle"
-                               alt="...">
-          <a href="/website/{{article.site.siteCode}}" routerLinkActive="active" class="text-decoration-none"> {{article.site.siteCode}}</a>
-        </h5>
-        <small class="text-muted">{{article.date | dateAgo}}</small>
-      </div>
-      <p class="mb-1">{{article.title}}</p>
-    </a>
+
+    </div>
   </div>
 
+
+  <div class="text-center">
+    <img src="https://via.placeholder.com/336x280" class="img-fluid" alt="...">
+    <hr/>
+    <img src="https://via.placeholder.com/300x600" class="img-fluid" alt="...">
+    <hr/>
   </div>
-</div>
 
-
-<div class="text-center">
-  <img src="https://via.placeholder.com/336x280" class="img-fluid" alt="...">
-  <hr/>
-  <img src="https://via.placeholder.com/300x600" class="img-fluid" alt="...">
-  <hr/>
-</div>
