@@ -34,30 +34,31 @@
         <hr/>
       </div>
 
-      <div class="card text" *ngFor="let comment of articles.">
+      <div class="card text" *ngFor="let comment of comments">
         <div class="card-header text-primary fw-bold fs-5 gx-3">
-          Header
+          {{comment.screenName}}
         </div>
         <div class="card-body">
-          Body
+         {{comment.comment}}
         </div>
         <div class="card-footer text-muted text-end  gx-3 p-3">
-          Footer
+          New Comment Post Reply votes up and votes down
         </div>
-
         <hr/>
-        <div class="card text">
+
+        <div class="card text" *ngFor="let response of comment.responses">
           <div class="card-header text-primary fw-bold fs-5 gx-3">
-            Header
+            {{response.screenName}}
           </div>
           <div class="card-body">
-            Body
+            {{response.response}}
           </div>
           <div class="card-footer text-muted text-end  gx-3 p-3">
-            Footer
+            New Comment Post Reply votes up and votes down
           </div>
         </div>
         <hr/>
+
       </div>
 
 

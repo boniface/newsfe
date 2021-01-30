@@ -59,14 +59,11 @@ export class SingleArticleComponent extends BaseComponent implements OnInit {
         this.latestArticles = articles;
       });
     this.articleCommentQuery
-      .selectEntity(this.linkhash)
+      .getComments(this.linkhash)
       .pipe(takeUntil(this.destroyed))
       .subscribe(articles => {
         this.comments = articles;
       });
-
-
-
   }
 
 }
