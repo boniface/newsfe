@@ -39,6 +39,7 @@
           {{comment.screenName}}
         </div>
         <div class="card-body">
+
          {{comment.comment}}
         </div>
         <div class="card-footer text-muted text-end  gx-3 p-3">
@@ -48,13 +49,13 @@
 
         <div class="card text" *ngFor="let response of comment.responses">
           <div class="card-header text-primary fw-bold fs-5 gx-3">
-            {{response.screenName}}
+           RESPONSE {{response.screenName}}
           </div>
           <div class="card-body">
             {{response.response}}
           </div>
           <div class="card-footer text-muted text-end  gx-3 p-3">
-            New Comment Post Reply votes up and votes down
+            New RESPONSE Post Reply votes up and votes down
           </div>
         </div>
         <hr/>
