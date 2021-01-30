@@ -8,6 +8,8 @@ import {takeUntil} from 'rxjs/operators';
 import {SingleArticleQuery} from '../../../state/queries/discussion/single-article-query';
 import {ArticlesQueries} from '../../../state/queries/articles/articles-queries';
 import {ZONE} from '../../../../shared/util/Utils';
+import {ArticleCommentQuery} from '../../../state/queries/discussion/article-comment-query';
+import {ArticleComment} from '../../../state/models/discussion/article-comment.model';
 
 @Component({
   selector: 'app-single-article',
@@ -18,6 +20,7 @@ export class SingleArticleComponent extends BaseComponent implements OnInit {
   article: Article;
   linkhash: string;
   latestArticles: Article[];
+  comments: ArticleComment [];
 
   constructor(
     private canonicalService: CanonicalService,
@@ -26,6 +29,7 @@ export class SingleArticleComponent extends BaseComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private articleQuery: SingleArticleQuery,
     private articleQueries: ArticlesQueries,
+    private articleCommentQuery: ArticleCommentQuery,
     private router: Router,
   ) {
     super();
@@ -54,6 +58,14 @@ export class SingleArticleComponent extends BaseComponent implements OnInit {
       .subscribe(articles => {
         this.latestArticles = articles;
       });
+    this.articleCommentQuery
+      .selectEntity(this.linkhash)
+      .pipe(takeUntil(this.destroyed))
+      .subscribe(articles => {
+        this.comments = articles;
+      });
+
+
 
   }
 
