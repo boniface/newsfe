@@ -33,16 +33,6 @@ export class SingleArticleService {
     const url = BASE_URL + this.base + '/' + linkhash;
     return this.http.get<SingleArticle>(url, this.options)
       .pipe(
-        tap(article => {
-            this.articlesStore.add(article.article);
-            this.articleCommentStore.add(article.articleComments);
-            for (const comment of article.articleComments) {
-              this.articleCommentResponseStore.add(comment.responses);
-              this.downVoteStore.add(comment.votes?.downVotes);
-              this.upVoteStore.add(comment.votes?.upVotes);
-            }
-          }
-        ),
         catchError(ApiErrors.handleError<SingleArticle>('get Key '))
       );
   }

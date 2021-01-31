@@ -10,6 +10,7 @@ import {ArticlesQueries} from '../../../state/queries/articles/articles-queries'
 import {ZONE} from '../../../../shared/util/Utils';
 import {ArticleCommentQuery} from '../../../state/queries/discussion/article-comment-query';
 import {ArticleComment} from '../../../state/models/discussion/article-comment.model';
+import {SingleArticleService} from '../../../state/services/discussion/single-article-service';
 
 @Component({
   selector: 'app-single-article',
@@ -27,9 +28,8 @@ export class SingleArticleComponent extends BaseComponent implements OnInit {
     private titleService: Title,
     private metaTagService: Meta,
     private activeRoute: ActivatedRoute,
-    private articleQuery: SingleArticleQuery,
-    private articleQueries: ArticlesQueries,
-    private articleCommentQuery: ArticleCommentQuery,
+    private service: SingleArticleService,
+
     private router: Router,
   ) {
     super();
@@ -40,30 +40,21 @@ export class SingleArticleComponent extends BaseComponent implements OnInit {
       .subscribe(params => {
         this.linkhash = params.id;
       });
-    this.articleQuery
+    this.service
       .getArticle(this.linkhash)
       .pipe(takeUntil(this.destroyed))
-      .subscribe(story => {
-          this.article = story;
+      .subscribe(singleArticle => {
+          this.article = singleArticle.article;
           this.canonicalService.setCanonicalURL();
-          this.titleService.setTitle(story?.title);
+          this.titleService.setTitle(singleArticle.article?.title);
           this.metaTagService.updateTag(
-            {name: 'Description', content: story?.metaDescription}
+            {name: 'Description', content: singleArticle.article?.metaDescription}
           );
+          this.comments = singleArticle.articleComments;
         }
       );
-    this.articleQueries
-      .getTheLatest(ZONE)
-      .pipe(takeUntil(this.destroyed))
-      .subscribe(articles => {
-        this.latestArticles = articles;
-      });
-    this.articleCommentQuery
-      .getComments(this.linkhash)
-      .pipe(takeUntil(this.destroyed))
-      .subscribe(articles => {
-        this.comments = articles;
-      });
+
+    console.log(" Results ", this.comments);
   }
 
 }
