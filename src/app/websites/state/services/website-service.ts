@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BASE_URL, Util} from '../../../shared/util/Utils';
+import {BASE_URL, Util, ZONE} from '../../../shared/util/Utils';
 import {HttpClient} from '@angular/common/http';
 import {WebsiteStore} from '../store/website-store';
 import {Observable} from 'rxjs';
@@ -48,7 +48,7 @@ export class WebsiteService {
   // }
 
   public getEntities(): Observable<Website[]> {
-    const url = BASE_URL + this.base + '/all';
+    const url = BASE_URL + this.base + '/zone/' + ZONE;
     return this.http
       .get<Website[]>(url, this.options)
       .pipe(

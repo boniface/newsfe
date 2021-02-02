@@ -4,7 +4,7 @@ import {HttpHeaders} from '@angular/common/http';
 import * as moment from 'moment';
 
 // https://newsapi.africahash.com
-export const BASE_URL = 'http://localhost:9000';
+export const BASE_URL = 'https://newsapi.africahash.com';
 export const ZONE = 'ZM';
 
 function uuidv4() {
