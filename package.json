@@ -37,7 +37,7 @@
     "@datorama/akita": "^6.0.0",
     "@fortawesome/fontawesome-free": "5.15.2",
     "@ngneat/forms-manager": "^2.3.0",
-    "@nguniversal/express-engine": "11.1.0",
+    "@nguniversal/express-engine": "11.1.1",
     "bootstrap": "5.0.0-beta1",
     "chart.js": "2.9.4",
     "date-fns": "^2.16.1",
