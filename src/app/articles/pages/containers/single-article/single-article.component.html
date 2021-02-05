@@ -38,14 +38,18 @@
       <div *ngFor="let comment of comments">
 
       <div class="card text border-primary" >
+
         <div class="card-header text-primary fw-bold fs-5 gx-3">
 
           <div class="row">
-            <div class="col-md-2"> <img src="https://via.placeholder.com/75x75" class="rounded-circle" alt="..."></div>
-            <div class="col-md-10">
-              <div class="pb-3 text-start">
-                <i class="fas fa-flag mr-1 text-info"></i>
-                {{comment.screenName}}
+            <div class="col-md-1 gx-1"> <img src="https://via.placeholder.com/75x75" class="rounded-circle" alt="..."></div>
+            <div class="col-md-11">
+              <div class="row">
+                <div class="col-md-4 text-start text-muted"><i class="fas fa-flag mr-1 text-info"></i>  {{comment.screenName}}</div>
+                <div class="col-md-8 text-end  ">
+                  Reputation
+                  <i class="fas fa-chart-line mr-1 text-success p-3">121</i>
+                </div>
               </div>
               <div class="row">
                 <div class="col-md-4 text-start text-muted"><i class="fas fa-clock mr-1 text-danger"></i>  {{comment.date | dateAgo}}</div>
@@ -55,7 +59,6 @@
                 </div>
               </div>
             </div>
-
           </div>
 
         </div>
@@ -64,14 +67,34 @@
          {{comment.comment}}
           {{comment.commentId}}
         </div>
-        <div class="card-footer text-muted text-end  gx-3 p-3">
+        <div class="card-footer text-muted  gx-3 p-3">
           New Comment Post Reply votes up and votes down
         </div>
         <hr/>
 
+
+
         <div class="card text border-light mb-3 p-5" *ngFor="let response of comment.responses">
-          <div class="card-header text-primary fw-bold fs-5 gx-3">
-           RESPONSE {{response.screenName}}
+          <div class="card-header text-primary fw-bold fs-7 gx-3">
+            <div class="row">
+              <div class="col-md-1 gx-1"> <img src="https://via.placeholder.com/75x75" class="rounded-circle" alt="..."></div>
+              <div class="col-md-11">
+                <div class="row">
+                  <div class="col-md-4 text-start text-muted"><i class="fas fa-flag mr-1 text-info"></i>  {{response.screenName}}</div>
+                  <div class="col-md-8 text-end  ">
+                    Reputation
+                    <i class="fas fa-chart-line mr-1 text-success p-3">121</i>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4 text-start text-muted"><i class="fas fa-clock mr-1 text-danger"></i>  {{response.date | dateAgo}}</div>
+                  <div class="col-md-8 text-end  ">
+                    <i class="fas fa-thumbs-down mr-1 text-danger p-3">121</i>
+                    <i class="fas fa-thumbs-up mr-1 text-success p-3">121</i>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="card-body">
             {{response.response}}
@@ -80,6 +103,9 @@
             New RESPONSE Post Reply votes up and votes down
           </div>
         </div>
+
+
+
         <hr/>
       </div>
 
