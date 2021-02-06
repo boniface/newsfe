@@ -9,7 +9,6 @@
                alt="...">
           <a href="/website/{{article.site.siteCode}}" routerLinkActive="active"
              class="text-decoration-none"> {{article.site.name}}</a>
-
         </div>
         <div class="card-body">
           <img src="{{article.image}}" class="card-img-top" alt="...">
@@ -21,7 +20,7 @@
             {{article.content | excerpt: 400}}
           </p>
           <div class="text">
-            <a href="{{article.articleLink}}" target="_blank" class="btn btn-outline-primary">Visit Site to Read
+            <a href="{{article.articleLink}}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary">Visit Site to Read
               More</a>
           </div>
         </div>
@@ -48,20 +47,18 @@
       </div>
 
 
-      <div *ngFor="let comment of comments">
-
-      <div class="card text border-primary" >
+      <div class="card text border-primary" *ngFor="let comment of comments" >
 
         <div class="card-header text-primary fw-bold fs-5 gx-3">
 
           <div class="row">
-            <div class="col-md-1 gx-1"> <img src="https://via.placeholder.com/75x75" class="rounded-circle" alt="..."></div>
+            <div class="col-md-1 gx-1">  <img src="https://via.placeholder.com/75x75" class="rounded-circle" alt="..."></div>
             <div class="col-md-11">
               <div class="row">
                 <div class="col-md-4 text-start text-muted"><i class="fas fa-flag mr-1 text-info"></i>  {{comment.screenName}}</div>
                 <div class="col-md-8 text-end  ">
                   Reputation
-                  <i class="fas fa-chart-line mr-1 text-success p-3">121</i>
+                  <i class="fas fa-chart-line mr-1 text-success p-3"> 100 %</i>
                 </div>
               </div>
               <div class="row">
@@ -80,25 +77,26 @@
          {{comment.comment}}
         </div>
         <div class="card-footer text-muted  gx-3 p-3">
+
           <div class="container">
             <div class="row justify-content-between">
               <div class="col-4">
-                <a class="btn btn-primary" data-bs-toggle="collapse" href="#new_comment" role="button" aria-expanded="false" aria-controls="new_comment">
+                <a class="btn btn-primary" data-bs-toggle="collapse" href="#new_comment_{{comment.commentId}}" role="button" aria-expanded="false" aria-controls="new_comment">
                   Post New Comment
                 </a>
               </div>
               <div class="col-4">
-                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#respond_to_comment" aria-expanded="false" aria-controls="respond_to_comment">
+                <a class="btn btn-secondary" data-bs-toggle="collapse" href="#respond_{{comment.commentId}}"  role="button" aria-expanded="false" aria-controls="respond_to_comment">
                  Reply to This Comment
-                </button>
+                </a>
               </div>
-              <div class="collapse" id="new_comment">
+              <div class="collapse" id="new_comment_{{comment.commentId}}">
                 <div class="card card-body">
                   Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
                 </div>
               </div>
 
-              <div class="collapse" id="respond_to_comment">
+              <div class="collapse" id="respond_{{comment.commentId}}">
                 <div class="card card-body">
                   Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
                 </div>
@@ -106,13 +104,14 @@
 
             </div>
           </div>
+
         </div>
         <hr/>
 
 
 
-        <div class="card text border-light mb-3 p-5" *ngFor="let response of comment.responses">
-          <div class="card-header text-primary fw-bold fs-7 gx-3">
+        <div class="card text  p-5" *ngFor="let response of comment.responses">
+          <div class="card-header border border-warning text-primary fw-bold fs-7 gx-3">
             <div class="row">
               <div class="col-md-1 gx-1"> <img src="https://via.placeholder.com/75x75" class="rounded-circle" alt="..."></div>
               <div class="col-md-11">
@@ -136,8 +135,33 @@
           <div class="card-body">
             {{response.response}}
           </div>
-          <div class="card-footer text-muted text-end  gx-3 p-3">
-            New RESPONSE Post Reply votes up and votes down
+          <div class="card-footer text-muted   gx-3 p-3">
+            <div class="container">
+              <div class="row justify-content-between">
+                <div class="col-4">
+                  <a class="btn btn-primary" data-bs-toggle="collapse" href="#respond_{{response.responseId}}" role="button" aria-expanded="false" aria-controls="new_comment_response">
+                    Post New Comment
+                  </a>
+                </div>
+                <div class="col-4">
+                  <a class="btn btn-secondary" type="button" data-bs-toggle="collapse" href="#respond_to_{{response.responseId}}" aria-expanded="false" aria-controls="respond_to">
+                    Reply to This Comment
+                  </a>
+                </div>
+                <div class="collapse" id="respond_{{response.responseId}}">
+                  <div class="card card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                  </div>
+                </div>
+
+                <div class="collapse" id="respond_to_{{response.responseId}}">
+                  <div class="card card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                  </div>
+                </div>
+
+              </div>
+            </div>
           </div>
         </div>
 
@@ -147,7 +171,6 @@
       </div>
 
 
-      </div>
 
 
     </div>
