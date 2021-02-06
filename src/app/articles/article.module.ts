@@ -12,6 +12,8 @@ import {DiscussionComponent} from './pages/containers/discussion/discussion.comp
 import { HeadlinesComponent } from './pages/components/views/headlines/headlines.component';
 import { SidebarComponent } from './pages/components/views/sidebar/sidebar.component';
 import { SidebarStoryComponent } from './pages/components/views/sidebar-story/sidebar-story.component';
+import { PostCommentComponent } from './pages/containers/discussion/forms/post-comment/post-comment.component';
+import { PostResponseComponent } from './pages/containers/discussion/forms/post-response/post-response.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { SidebarStoryComponent } from './pages/components/views/sidebar-story/si
     DiscussionComponent,
     HeadlinesComponent,
     SidebarComponent,
-    SidebarStoryComponent
+    SidebarStoryComponent,
+    PostCommentComponent,
+    PostResponseComponent
   ],
   imports: [
     CommonModule,
