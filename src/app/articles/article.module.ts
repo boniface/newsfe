@@ -34,7 +34,7 @@ import { PostResponseComponent } from './pages/containers/discussion/forms/post-
   imports: [
     CommonModule,
     ArticleRoutingModule,
-  ]
+  ],
 })
 export class ArticleModule {
 }

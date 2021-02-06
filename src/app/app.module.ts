@@ -8,6 +8,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {ArticleService} from './articles/state/services/articles/article.service';
 import {ZONE} from './shared/util/Utils';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 export function appInit(articleService: ArticleService) {
   return () => articleService.getInitialData(ZONE).subscribe();
@@ -22,6 +23,8 @@ export function appInit(articleService: ArticleService) {
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
   ],
   providers: [ArticleService,
