@@ -14,6 +14,7 @@ import { SidebarComponent } from './pages/components/views/sidebar/sidebar.compo
 import { SidebarStoryComponent } from './pages/components/views/sidebar-story/sidebar-story.component';
 import { PostCommentComponent } from './pages/containers/discussion/forms/post-comment/post-comment.component';
 import { PostResponseComponent } from './pages/containers/discussion/forms/post-response/post-response.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -31,10 +32,11 @@ import { PostResponseComponent } from './pages/containers/discussion/forms/post-
     PostCommentComponent,
     PostResponseComponent
   ],
-  imports: [
-    CommonModule,
-    ArticleRoutingModule,
-  ],
+    imports: [
+        CommonModule,
+        ArticleRoutingModule,
+        ReactiveFormsModule,
+    ],
 })
 export class ArticleModule {
 }
