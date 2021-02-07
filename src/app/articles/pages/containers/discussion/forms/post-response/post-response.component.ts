@@ -12,11 +12,6 @@ import {Response} from '../../../../../state/models/discussion/response.model';
   styleUrls: ['./post-response.component.css']
 })
 export class PostResponseComponent implements OnInit {
-  //     commentId: string;
-  //    emailId: string;
-  //    responseId: string;
-  //    response: string;
-  //    date: Date;
   @Input() commentId: string;
   responseForm: FormGroup;
   loggedInUser: boolean;
@@ -32,17 +27,17 @@ export class PostResponseComponent implements OnInit {
     interface ResponseEntity {
       screenName: string;
       email: string;
-      comment: string;
+      response: string;
     }
 
     this.responseForm = this.formBuilder.group({
       screenName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      comment: ['', [Validators.required, Validators.maxLength(this.maxLength)]]
+      response: ['', [Validators.required, Validators.maxLength(this.maxLength)]]
     });
     this.loggedInUser = this.localStorageService.userHasProfile();
 
-    this.responseForm.getControl('resoinse').valueChanges.subscribe(value => {
+    this.responseForm.getControl('response').valueChanges.subscribe(value => {
       // do something with value here
       this.theLength = value.length;
     });

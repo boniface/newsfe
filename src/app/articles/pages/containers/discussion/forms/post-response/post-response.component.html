@@ -1,24 +1,52 @@
 <div class="row g-2">
-  <form class="ext-start d-grid gap-3">
+  <form [formGroup]="responseForm" class="ext-start d-grid gap-3" (ngSubmit)="onSubmit()">
     <div class="form-row text-start">
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-6" [hidden]=loggedInUser>
         <label for="screenName">Screen Name</label>
-        <input type="text" class="form-control" id="screenName">
+        <input type="text"
+               formControlName="screenName"
+               class="form-control"
+               id="screenName"
+               required>
+        <div *ngIf="formFields.screenName.invalid && (formFields.screenName.dirty || formFields.screenName.touched)"
+             class="alert alert-danger">
+          <div *ngIf="formFields.screenName.errors.required">Screen Name is required</div>
+        </div>
       </div>
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-6" [hidden]=loggedInUser>
         <label for="email">Email Address</label>
-        <input type="text" class="form-control" id="email">
+        <input type="text"
+               class="form-control"
+               formControlName="email"
+               id="email"
+               required>
+        <div *ngIf="formFields.email.invalid && (formFields.email.dirty || formFields.email.touched)"
+             class="alert alert-danger">
+          <div *ngIf="formFields.email.errors.required">Email is required</div>
+          <div *ngIf="formFields.comment.errors.required">Valid Email Required</div>
+        </div>
       </div>
+
 
     </div>
     <div class="form-group gap-5 text-start">
-      <label for="response">Comment</label>
-      <textarea class="form-control is-invalid"  style="height: 150px" id="response"  placeholder="Required example textarea" required></textarea>
+      <label for="response">Response</label>
+      <textarea class="form-control"
+                style="height: 150px"
+                formControlName="response"
+                id="response"
+                [maxLength]=maxLength
+                required>
+    </textarea>
+      <span class="text-danger  pull-left">{{(maxLength - theLength)}} Characters Left</span>
     </div>
     <div class="text-end">
-      <button type="submit" class="btn btn-secondary w-25 p-2 ">Submit Reply</button>
+      <div class="media-footer">
+        <button [disabled]="responseForm.invalid" class="btn btn-secondary btn-wd pull-right">Post
+          Response
+        </button>
+      </div>
     </div>
   </form>
 
 </div>
-
